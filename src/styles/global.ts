@@ -17,10 +17,6 @@ const GlobalStyles = createGlobalStyle`
       position: relative;
     }
 
-    #__next {
-      background-color: ${theme.colors.primary.s500};
-    }
-
     body {
       font-family: ${theme.fonts.family.base};
       color: ${theme.colors.gray.s500};
