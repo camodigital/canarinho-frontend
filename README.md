@@ -3,3 +3,4 @@ Next.js
 Graphql
 next-translate
 storybook
+# canarinho-frontend
