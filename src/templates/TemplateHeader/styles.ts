@@ -8,3 +8,5 @@ export const Link = styled.li`
   display: inline-block;
   margin-right: 1rem;
 `
+
+export const Lang = styled.div``
