@@ -1,0 +1,73 @@
+{
+  "logo": "Canarinho School",
+  "menuTitle": "Principal",
+  "menuLinks": [
+    {
+      "name": "Home",
+      "link": "/"
+    },
+    {
+      "name": "About",
+      "link": "/institucional"
+    },
+    {
+      "name": "Modalities",
+      "link": "/modalidades"
+    },
+    {
+      "name": "Notices",
+      "link": "/avisos"
+    },
+    {
+      "name": "Calendar",
+      "link": "/calendario"
+    },
+    {
+      "name": "Contact",
+      "link": "/"
+    }
+  ],
+  "menuButtons": [
+    {
+      "name": "Pre-Enrollment",
+      "link": "/",
+      "tone": "secondary"
+    },
+    {
+      "name": "Responsible",
+      "link": "/",
+      "tone": "tertiary"
+    }
+  ],
+  "menuSuppTitle": "Day by Day",
+  "menuSuppLinks": [
+    {
+      "name": "General Notices",
+      "link": "/avisos"
+    },
+    {
+      "name": "Calendar",
+      "link": "/calendario"
+    },
+    {
+      "name": "Carte",
+      "link": "/cardapio"
+    },
+    {
+      "name": "Regulation",
+      "link": "/calendario"
+    },
+    {
+      "name": "Parent-Teacher Meeting",
+      "link": "/"
+    },
+    {
+      "name": "Pedagogical Texts",
+      "link": "/"
+    },
+    {
+      "name": "Adaptation Process",
+      "link": "/"
+    }
+  ]
+}

@@ -5,12 +5,11 @@ import TemplateHeader from 'templates/TemplateHeader'
 import * as S from './styles'
 
 const TemplateHome = () => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('home')
 
   return (
     <S.Wrapper>
-      <TemplateHeader />
-      <h1>{t('hello')}</h1>
+      <TemplateHeader pageTitle={t('pageTitle')} pageDesc={t('pageDesc')} />
     </S.Wrapper>
   )
 }

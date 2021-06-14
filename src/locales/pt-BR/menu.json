@@ -1,0 +1,77 @@
+{
+  "logo": "Escola Canarinho",
+  "menuTitle": "Principal",
+  "menuLinks": [
+    {
+      "name": "Inicio",
+      "link": "/"
+    },
+    {
+      "name": "Sobre",
+      "link": "/institucional"
+    },
+    {
+      "name": "Modalidades",
+      "link": "/modalidades"
+    },
+    {
+      "name": "Avisos",
+      "link": "/avisos"
+    },
+    {
+      "name": "Calendário",
+      "link": "/calendario"
+    },
+    {
+      "name": "Contato",
+      "link": "/"
+    }
+  ],
+  "menuButtons": [
+    {
+      "name": "Pré-Matricula",
+      "link": "/",
+      "tone": "secondary"
+    },
+    {
+      "name": "Responsável",
+      "link": "/",
+      "tone": "tertiary"
+    }
+  ],
+  "menuSuppTitle": "Dia a Dia",
+  "menuSuppLinks": [
+    {
+      "name": "Avisos Gerais",
+      "link": "/avisos"
+    },
+    {
+      "name": "Calendário",
+      "link": "/calendario"
+    },
+    {
+      "name": "Cardápio",
+      "link": "/cardapio"
+    },
+    {
+      "name": "Avisos",
+      "link": "/avisos"
+    },
+    {
+      "name": "Regulamento",
+      "link": "/calendario"
+    },
+    {
+      "name": "Reunião de Pais e Mestres",
+      "link": "/"
+    },
+    {
+      "name": "Textos Pedagógicos",
+      "link": "/"
+    },
+    {
+      "name": "Processo de Adaptação",
+      "link": "/"
+    }
+  ]
+}

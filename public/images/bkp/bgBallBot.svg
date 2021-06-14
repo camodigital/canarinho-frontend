@@ -1,0 +1,10 @@
+<svg width="1440" height="600" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0)">
+<circle cx="720" cy="-300" r="874" transform="rotate(-180 720 -300)" fill="#FAFAFA"/>
+</g>
+<defs>
+<clipPath id="clip0">
+<rect width="1440" height="600" fill="white" transform="translate(1440 600) rotate(-180)"/>
+</clipPath>
+</defs>
+</svg>

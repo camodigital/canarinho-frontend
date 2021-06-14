@@ -2,7 +2,8 @@ module.exports = {
   locales: ['en', 'pt-BR'],
   defaultLocale: 'pt-BR',
   pages: {
-    '*': ['common']
+    '*': ['common', 'menu'],
+    '/': ['home']
   },
   // ...rest of config
   loadLocaleFrom: (lang, ns) =>

@@ -1,80 +1,36 @@
-import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
-import ActiveLink from 'components/ActiveLink'
+import MenuMaster from 'components/MenuMaster'
+import Head from 'next/head'
+import { MenuProps } from 'types/menu'
 
 import * as S from './styles'
 
-const TemplateHeader = () => {
-  const router = useRouter()
-  const { locale } = router
+export type TemplateHeaderProps = MenuProps & {
+  pageTitle: string
+  pageDesc: string
+}
+
+const TemplateHeader = ({ pageTitle, pageDesc }: TemplateHeaderProps) => {
+  const { t } = useTranslation('menu')
 
   return (
     <S.Wrapper>
-      <S.Links>
-        <S.Link>
-          <ActiveLink href="/">
-            <a>Home</a>
-          </ActiveLink>
-        </S.Link>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDesc} />
+      </Head>
 
-        <S.Link>
-          <ActiveLink href="/modalidades">
-            <a>Modalidades</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/avisos">
-            <a>Avisos Gerais</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/calendario">
-            <a>Calendário</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/cardapio">
-            <a>Cardápio</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/funcionamento">
-            <a>Como funciona</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/institucional">
-            <a>Institucional</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/modalidades">
-            <a>Modalidades</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <S.Lang>{locale}</S.Lang>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/" locale="pt-BR">
-            <a>PT</a>
-          </ActiveLink>
-        </S.Link>
-
-        <S.Link>
-          <ActiveLink href="/" locale="en">
-            <a>EN</a>
-          </ActiveLink>
-        </S.Link>
-      </S.Links>
+      <S.Menu>
+        <MenuMaster
+          logoName={t('logo')!}
+          menuTitle={t('menuTitle')!}
+          menuLinks={t('menuLinks', {}, { returnObjects: true })!}
+          menuButtons={t('menuButtons', {}, { returnObjects: true })!}
+          menuSuppTitle={t('menuSuppTitle')!}
+          menuSuppLinks={t('menuSuppLinks', {}, { returnObjects: true })!}
+        />
+      </S.Menu>
     </S.Wrapper>
   )
 }
