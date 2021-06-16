@@ -4,8 +4,12 @@ import Hero from 'components/Hero'
 import TemplateHeader from 'templates/TemplateHeader'
 
 import * as S from './styles'
+import CardsModalities, {
+  CardsModalitiesProps
+} from 'components/CardsModalities'
+import ContainerMaster from 'components/ContainerMaster'
 
-export type HomeProps = {
+export type HomeProps = CardsModalitiesProps & {
   siteNameFirst: string
   siteNameLast: string
   noticeAlertIcon: string
@@ -34,7 +38,11 @@ const TemplateHome = (props: HomeProps) => {
         </S.Section>
 
         <S.Block>
-          <S.Section>cards</S.Section>
+          <S.Section>
+            <ContainerMaster>
+              <CardsModalities cardsModalities={props.cardsModalities} />
+            </ContainerMaster>
+          </S.Section>
 
           <S.Section>institutional</S.Section>
 

@@ -19,4 +19,6 @@ export const Content = styled.div``
 
 export const Block = styled.div``
 
-export const Section = styled.section``
+export const Section = styled.section`
+  position: relative;
+`

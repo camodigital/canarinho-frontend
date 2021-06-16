@@ -1,3 +1,5 @@
+import useTranslation from 'next-translate/useTranslation'
+
 import TextSmall from 'components/TextSmall'
 import TitleItem, { TitleItemProps } from 'components/TitleItem'
 import { toneProps } from 'types/tone'
@@ -13,8 +15,7 @@ export type CardModalitiesProps = toneProps &
     icon: string
     subtitle: string
     text: string
-    buttonText: string
-    buttonLink: string
+    link: string
   }
 
 const CardModalities = ({
@@ -23,54 +24,57 @@ const CardModalities = ({
   title,
   subtitle,
   text,
-  buttonText,
-  buttonLink
-}: CardModalitiesProps) => (
-  <S.Wrapper>
-    <S.Icon tone={tone}>
-      <ActiveLink href={buttonLink}>
-        <a>
-          <img src={icon} alt={title} />
-        </a>
-      </ActiveLink>
-    </S.Icon>
+  link
+}: CardModalitiesProps) => {
+  const { t } = useTranslation('common')
 
-    <S.Title>
-      <ActiveLink href={buttonLink}>
-        <a>
-          <TitleItem title={title} tone={tone} />
-        </a>
-      </ActiveLink>
-    </S.Title>
+  return (
+    <S.Wrapper>
+      <S.Icon tone={tone}>
+        <ActiveLink href={`/modalidades/${link}`}>
+          <a>
+            <img src={icon} alt={title} />
+          </a>
+        </ActiveLink>
+      </S.Icon>
 
-    <MediaMatch method="greaterThan" medias="desk">
-      <S.Subtitle>
-        <TextSmall text={subtitle} />
-      </S.Subtitle>
-    </MediaMatch>
+      <S.Title>
+        <ActiveLink href={`/modalidades/${link}`}>
+          <a>
+            <TitleItem title={title} tone={tone} />
+          </a>
+        </ActiveLink>
+      </S.Title>
 
-    <MediaMatch method="greaterThan" medias="desk">
-      <S.Text>
-        <TextLimited text={text} limit={174} />
-      </S.Text>
-    </MediaMatch>
+      <MediaMatch method="greaterThan" medias="desk">
+        <S.Subtitle>
+          <TextSmall text={subtitle} />
+        </S.Subtitle>
+      </MediaMatch>
 
-    <MediaMatch method="greaterThan" medias="desk">
-      <S.ButtonGroup>
-        <S.ButtonText>{buttonText}</S.ButtonText>
+      <MediaMatch method="greaterThan" medias="desk">
+        <S.Text>
+          <TextLimited text={text} limit={174} />
+        </S.Text>
+      </MediaMatch>
 
-        <S.ButtonIcon>
-          <ButtonIcon
-            tone={tone}
-            manner="internal"
-            link={buttonLink}
-            size="medium"
-            icon="arrowRight"
-          />
-        </S.ButtonIcon>
-      </S.ButtonGroup>
-    </MediaMatch>
-  </S.Wrapper>
-)
+      <MediaMatch method="greaterThan" medias="desk">
+        <S.ButtonGroup>
+          <S.ButtonText>{t('buttons.moreInfo')}</S.ButtonText>
+
+          <S.ButtonIcon>
+            <ButtonIcon
+              tone={tone}
+              manner="internal"
+              link={`/modalidades/${link}`}
+              size="medium"
+              icon="arrowRight"
+            />
+          </S.ButtonIcon>
+        </S.ButtonGroup>
+      </MediaMatch>
+    </S.Wrapper>
+  )
+}
 
 export default CardModalities

@@ -1,4 +1,7 @@
 {
   "siteNameFirst": "Escola",
-  "siteNameLast": "Canarinho"
+  "siteNameLast": "Canarinho",
+  "buttons": {
+    "moreInfo": "Mais Informações"
+  }
 }

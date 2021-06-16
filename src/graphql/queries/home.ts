@@ -17,5 +17,16 @@ export const GET_HOME = gql`
         }
       }
     }
+
+    colecaoModalidades(locale: $locale) {
+      Color
+      slug
+      Icon {
+        url
+      }
+      Title
+      Subtitle
+      Text
+    }
   }
 `

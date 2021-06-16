@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ENUM_COLECAOMODALIDADES_COLOR } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetHome
 // ====================================================
@@ -36,8 +38,24 @@ export interface GetHome_paginaHome {
   Aviso_Home: GetHome_paginaHome_Aviso_Home | null;
 }
 
+export interface GetHome_colecaoModalidades_Icon {
+  __typename: "UploadFile";
+  url: string;
+}
+
+export interface GetHome_colecaoModalidades {
+  __typename: "ColecaoModalidades";
+  Color: ENUM_COLECAOMODALIDADES_COLOR | null;
+  slug: string | null;
+  Icon: GetHome_colecaoModalidades_Icon | null;
+  Title: string | null;
+  Subtitle: string | null;
+  Text: string | null;
+}
+
 export interface GetHome {
   paginaHome: GetHome_paginaHome | null;
+  colecaoModalidades: GetHome_colecaoModalidades[];
 }
 
 export interface GetHomeVariables {

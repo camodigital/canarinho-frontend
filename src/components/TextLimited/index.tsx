@@ -18,7 +18,13 @@ const TextLimited = ({ text, limit }: TextLimitedProps) => {
     }
   }, [textLimited, limit, text])
 
-  return <S.Wrapper>{!!textLimited && textLimited}</S.Wrapper>
+  return (
+    <S.Wrapper>
+      {!!textLimited && (
+        <span dangerouslySetInnerHTML={{ __html: textLimited }} />
+      )}
+    </S.Wrapper>
+  )
 }
 
 export default TextLimited

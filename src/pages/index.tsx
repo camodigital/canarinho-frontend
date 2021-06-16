@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 
 import TemplateHome, { HomeProps } from 'templates/TemplateHome'
 import { GET_HOME } from 'graphql/queries/home'
+import { GetHome_colecaoModalidades } from 'graphql/generated/GetHome'
 
 export default function Home(props: HomeProps) {
   const { t } = useTranslation('common')
@@ -16,6 +17,7 @@ export default function Home(props: HomeProps) {
         noticeAlertIcon={props.noticeAlertIcon}
         noticeAlertTitle={props.noticeAlertTitle}
         noticeAlertSlug={props.noticeAlertSlug}
+        cardsModalities={props.cardsModalities}
       />
     </>
   )
@@ -35,10 +37,21 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     props: {
       data: data,
       initialApolloState: apolloClient.cache.extract(),
-      //
+      // hero
       noticeAlertIcon: `http://localhost:1337${data.paginaHome.Aviso_Home.Icon.url}`,
       noticeAlertTitle: data.paginaHome.Aviso_Home.Title,
-      noticeAlertSlug: data.paginaHome.Aviso_Home.aviso.slug
+      noticeAlertSlug: data.paginaHome.Aviso_Home.aviso.slug,
+      // modalities
+      cardsModalities: data.colecaoModalidades.map(
+        (card: GetHome_colecaoModalidades) => ({
+          tone: card.Color,
+          link: card.slug,
+          icon: `http://localhost:1337${card.Icon?.url}`,
+          title: card.Title,
+          subtitle: card.Subtitle,
+          text: card.Text
+        })
+      )
     }
   }
 }

@@ -3,18 +3,15 @@ import CardModalities, { CardModalitiesProps } from 'components/CardModalities'
 import * as S from './styles'
 
 export type CardsModalitiesProps = {
-  cards: CardModalitiesProps[]
+  cardsModalities: CardModalitiesProps[]
 }
 
-const CardsModalities = ({ cards }: CardsModalitiesProps) => (
+const CardsModalities = ({ cardsModalities }: CardsModalitiesProps) => (
   <S.Wrapper>
     <S.Cards>
-      {!!cards &&
-        cards.map(
-          (
-            { tone, icon, title, subtitle, text, buttonLink, buttonText },
-            index
-          ) => (
+      {!!cardsModalities &&
+        cardsModalities.map(
+          ({ tone, icon, title, subtitle, text, link }, index) => (
             <S.Card key={'CardsModalities' + index}>
               <CardModalities
                 tone={tone}
@@ -22,8 +19,7 @@ const CardsModalities = ({ cards }: CardsModalitiesProps) => (
                 title={title}
                 subtitle={subtitle}
                 text={text}
-                buttonLink={buttonLink}
-                buttonText={buttonText}
+                link={link}
               />
             </S.Card>
           )

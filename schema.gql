@@ -811,6 +811,12 @@ type deleteColecaoInstitucionalPayload {
   colecaoInstitucional: ColecaoInstitucional
 }
 
+enum ENUM_COLECAOMODALIDADES_COLOR {
+  primary
+  secondary
+  tertiary
+}
+
 type ColecaoModalidades {
   id: ID!
   created_at: DateTime!
@@ -823,6 +829,8 @@ type ColecaoModalidades {
   Images_Gallery: [ComponentGalleriesGalleryImages]
   Videos_Gallery: [ComponentGalleriesGalleryVideo]
   Documents: [ComponentDocumentsDocuments]
+  Subtitle: String
+  Color: ENUM_COLECAOMODALIDADES_COLOR
   locale: String
   localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoModalidades!]!
 }
@@ -847,6 +855,8 @@ type ColecaoModalidadesGroupBy {
   Text: [ColecaoModalidadesConnectionText]
   Icon: [ColecaoModalidadesConnectionIcon]
   Image: [ColecaoModalidadesConnectionImage]
+  Subtitle: [ColecaoModalidadesConnectionSubtitle]
+  Color: [ColecaoModalidadesConnectionColor]
   locale: [ColecaoModalidadesConnectionLocale]
 }
 
@@ -890,6 +900,16 @@ type ColecaoModalidadesConnectionImage {
   connection: ColecaoModalidadesConnection
 }
 
+type ColecaoModalidadesConnectionSubtitle {
+  key: String
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionColor {
+  key: String
+  connection: ColecaoModalidadesConnection
+}
+
 type ColecaoModalidadesConnectionLocale {
   key: String
   connection: ColecaoModalidadesConnection
@@ -904,6 +924,8 @@ input ColecaoModalidadeInput {
   Images_Gallery: [ComponentGalleriesGalleryImageInput]
   Videos_Gallery: [ComponentGalleriesGalleryVideoInput]
   Documents: [ComponentDocumentsDocumentInput]
+  Subtitle: String
+  Color: ENUM_COLECAOMODALIDADES_COLOR
   localizations: [ID]
   locale: String
   created_by: ID
@@ -919,6 +941,8 @@ input editColecaoModalidadeInput {
   Images_Gallery: [editComponentGalleriesGalleryImageInput]
   Videos_Gallery: [editComponentGalleriesGalleryVideoInput]
   Documents: [editComponentDocumentsDocumentInput]
+  Subtitle: String
+  Color: ENUM_COLECAOMODALIDADES_COLOR
   localizations: [ID]
   locale: String
   created_by: ID
@@ -1865,7 +1889,7 @@ input editComponentTourVirualTourVirtualInput {
   Asa_Norte: String
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ColecaoAvisos | ColecaoAvisosConnection | ColecaoAvisosAggregator | ColecaoAvisosGroupBy | ColecaoAvisosConnectionId | ColecaoAvisosConnectionCreated_at | ColecaoAvisosConnectionUpdated_at | ColecaoAvisosConnectionTitle | ColecaoAvisosConnectionSlug | ColecaoAvisosConnectionText | ColecaoAvisosConnectionImage | ColecaoAvisosConnectionLocale | createColecaoAvisoPayload | updateColecaoAvisoPayload | deleteColecaoAvisoPayload | ColecaoCalendario | ColecaoCalendarioConnection | ColecaoCalendarioAggregator | ColecaoCalendarioGroupBy | ColecaoCalendarioConnectionId | ColecaoCalendarioConnectionCreated_at | ColecaoCalendarioConnectionUpdated_at | ColecaoCalendarioConnectionTitle | ColecaoCalendarioConnectionSlug | ColecaoCalendarioConnectionDate | ColecaoCalendarioConnectionText | ColecaoCalendarioConnectionLocale | createColecaoCalendarioPayload | updateColecaoCalendarioPayload | deleteColecaoCalendarioPayload | ColecaoCardapio | ColecaoCardapioConnection | ColecaoCardapioAggregator | ColecaoCardapioGroupBy | ColecaoCardapioConnectionId | ColecaoCardapioConnectionCreated_at | ColecaoCardapioConnectionUpdated_at | ColecaoCardapioConnectionTitle | ColecaoCardapioConnectionSlug | ColecaoCardapioConnectionDate | ColecaoCardapioConnectionText | ColecaoCardapioConnectionLocale | createColecaoCardapioPayload | updateColecaoCardapioPayload | deleteColecaoCardapioPayload | ColecaoDepoimentos | ColecaoDepoimentosConnection | ColecaoDepoimentosAggregator | ColecaoDepoimentosGroupBy | ColecaoDepoimentosConnectionId | ColecaoDepoimentosConnectionCreated_at | ColecaoDepoimentosConnectionUpdated_at | ColecaoDepoimentosConnectionName | ColecaoDepoimentosConnectionText | ColecaoDepoimentosConnectionLocale | createColecaoDepoimentoPayload | updateColecaoDepoimentoPayload | deleteColecaoDepoimentoPayload | ColecaoFuncionamento | ColecaoFuncionamentoConnection | ColecaoFuncionamentoAggregator | ColecaoFuncionamentoGroupBy | ColecaoFuncionamentoConnectionId | ColecaoFuncionamentoConnectionCreated_at | ColecaoFuncionamentoConnectionUpdated_at | ColecaoFuncionamentoConnectionTitle | ColecaoFuncionamentoConnectionSlug | ColecaoFuncionamentoConnectionText | ColecaoFuncionamentoConnectionImage | ColecaoFuncionamentoConnectionLocale | createColecaoFuncionamentoPayload | updateColecaoFuncionamentoPayload | deleteColecaoFuncionamentoPayload | ColecaoInstitucional | ColecaoInstitucionalConnection | ColecaoInstitucionalAggregator | ColecaoInstitucionalGroupBy | ColecaoInstitucionalConnectionId | ColecaoInstitucionalConnectionCreated_at | ColecaoInstitucionalConnectionUpdated_at | ColecaoInstitucionalConnectionTitle | ColecaoInstitucionalConnectionSlug | ColecaoInstitucionalConnectionText | ColecaoInstitucionalConnectionImage | ColecaoInstitucionalConnectionLocale | createColecaoInstitucionalPayload | updateColecaoInstitucionalPayload | deleteColecaoInstitucionalPayload | ColecaoModalidades | ColecaoModalidadesConnection | ColecaoModalidadesAggregator | ColecaoModalidadesGroupBy | ColecaoModalidadesConnectionId | ColecaoModalidadesConnectionCreated_at | ColecaoModalidadesConnectionUpdated_at | ColecaoModalidadesConnectionTitle | ColecaoModalidadesConnectionSlug | ColecaoModalidadesConnectionText | ColecaoModalidadesConnectionIcon | ColecaoModalidadesConnectionImage | ColecaoModalidadesConnectionLocale | createColecaoModalidadePayload | updateColecaoModalidadePayload | deleteColecaoModalidadePayload | PaginaAvisosGerais | updatePaginaAvisosGeraiPayload | deletePaginaAvisosGeraiPayload | PaginaCalendario | updatePaginaCalendarioPayload | deletePaginaCalendarioPayload | PaginaCardapio | updatePaginaCardapioPayload | deletePaginaCardapioPayload | PaginaComoFunciona | updatePaginaComoFuncionaPayload | deletePaginaComoFuncionaPayload | PaginaContato | updatePaginaContatoPayload | deletePaginaContatoPayload | PaginaHome | updatePaginaHomePayload | deletePaginaHomePayload | PaginaInstitucional | updatePaginaInstitucionalPayload | deletePaginaInstitucionalPayload | PaginaModalidades | updatePaginaModalidadePayload | deletePaginaModalidadePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentAdressAdress | ComponentDocumentsDocuments | ComponentGalleriesGalleryImages | ComponentGalleriesGalleryVideo | ComponentNoticeNotice | ComponentTitlePageTitulo | ComponentTourVirualTourVirtual
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ColecaoAvisos | ColecaoAvisosConnection | ColecaoAvisosAggregator | ColecaoAvisosGroupBy | ColecaoAvisosConnectionId | ColecaoAvisosConnectionCreated_at | ColecaoAvisosConnectionUpdated_at | ColecaoAvisosConnectionTitle | ColecaoAvisosConnectionSlug | ColecaoAvisosConnectionText | ColecaoAvisosConnectionImage | ColecaoAvisosConnectionLocale | createColecaoAvisoPayload | updateColecaoAvisoPayload | deleteColecaoAvisoPayload | ColecaoCalendario | ColecaoCalendarioConnection | ColecaoCalendarioAggregator | ColecaoCalendarioGroupBy | ColecaoCalendarioConnectionId | ColecaoCalendarioConnectionCreated_at | ColecaoCalendarioConnectionUpdated_at | ColecaoCalendarioConnectionTitle | ColecaoCalendarioConnectionSlug | ColecaoCalendarioConnectionDate | ColecaoCalendarioConnectionText | ColecaoCalendarioConnectionLocale | createColecaoCalendarioPayload | updateColecaoCalendarioPayload | deleteColecaoCalendarioPayload | ColecaoCardapio | ColecaoCardapioConnection | ColecaoCardapioAggregator | ColecaoCardapioGroupBy | ColecaoCardapioConnectionId | ColecaoCardapioConnectionCreated_at | ColecaoCardapioConnectionUpdated_at | ColecaoCardapioConnectionTitle | ColecaoCardapioConnectionSlug | ColecaoCardapioConnectionDate | ColecaoCardapioConnectionText | ColecaoCardapioConnectionLocale | createColecaoCardapioPayload | updateColecaoCardapioPayload | deleteColecaoCardapioPayload | ColecaoDepoimentos | ColecaoDepoimentosConnection | ColecaoDepoimentosAggregator | ColecaoDepoimentosGroupBy | ColecaoDepoimentosConnectionId | ColecaoDepoimentosConnectionCreated_at | ColecaoDepoimentosConnectionUpdated_at | ColecaoDepoimentosConnectionName | ColecaoDepoimentosConnectionText | ColecaoDepoimentosConnectionLocale | createColecaoDepoimentoPayload | updateColecaoDepoimentoPayload | deleteColecaoDepoimentoPayload | ColecaoFuncionamento | ColecaoFuncionamentoConnection | ColecaoFuncionamentoAggregator | ColecaoFuncionamentoGroupBy | ColecaoFuncionamentoConnectionId | ColecaoFuncionamentoConnectionCreated_at | ColecaoFuncionamentoConnectionUpdated_at | ColecaoFuncionamentoConnectionTitle | ColecaoFuncionamentoConnectionSlug | ColecaoFuncionamentoConnectionText | ColecaoFuncionamentoConnectionImage | ColecaoFuncionamentoConnectionLocale | createColecaoFuncionamentoPayload | updateColecaoFuncionamentoPayload | deleteColecaoFuncionamentoPayload | ColecaoInstitucional | ColecaoInstitucionalConnection | ColecaoInstitucionalAggregator | ColecaoInstitucionalGroupBy | ColecaoInstitucionalConnectionId | ColecaoInstitucionalConnectionCreated_at | ColecaoInstitucionalConnectionUpdated_at | ColecaoInstitucionalConnectionTitle | ColecaoInstitucionalConnectionSlug | ColecaoInstitucionalConnectionText | ColecaoInstitucionalConnectionImage | ColecaoInstitucionalConnectionLocale | createColecaoInstitucionalPayload | updateColecaoInstitucionalPayload | deleteColecaoInstitucionalPayload | ColecaoModalidades | ColecaoModalidadesConnection | ColecaoModalidadesAggregator | ColecaoModalidadesGroupBy | ColecaoModalidadesConnectionId | ColecaoModalidadesConnectionCreated_at | ColecaoModalidadesConnectionUpdated_at | ColecaoModalidadesConnectionTitle | ColecaoModalidadesConnectionSlug | ColecaoModalidadesConnectionText | ColecaoModalidadesConnectionIcon | ColecaoModalidadesConnectionImage | ColecaoModalidadesConnectionSubtitle | ColecaoModalidadesConnectionColor | ColecaoModalidadesConnectionLocale | createColecaoModalidadePayload | updateColecaoModalidadePayload | deleteColecaoModalidadePayload | PaginaAvisosGerais | updatePaginaAvisosGeraiPayload | deletePaginaAvisosGeraiPayload | PaginaCalendario | updatePaginaCalendarioPayload | deletePaginaCalendarioPayload | PaginaCardapio | updatePaginaCardapioPayload | deletePaginaCardapioPayload | PaginaComoFunciona | updatePaginaComoFuncionaPayload | deletePaginaComoFuncionaPayload | PaginaContato | updatePaginaContatoPayload | deletePaginaContatoPayload | PaginaHome | updatePaginaHomePayload | deletePaginaHomePayload | PaginaInstitucional | updatePaginaInstitucionalPayload | deletePaginaInstitucionalPayload | PaginaModalidades | updatePaginaModalidadePayload | deletePaginaModalidadePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentAdressAdress | ComponentDocumentsDocuments | ComponentGalleriesGalleryImages | ComponentGalleriesGalleryVideo | ComponentNoticeNotice | ComponentTitlePageTitulo | ComponentTourVirualTourVirtual
 
 input InputID {
   id: ID!
