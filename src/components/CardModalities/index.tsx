@@ -10,21 +10,21 @@ import * as S from './styles'
 
 export type CardModalitiesProps = toneProps &
   TitleItemProps & {
-    icon?: string
-    subtitle?: string
-    text?: string
-    buttonText?: string
-    buttonLink?: string
+    icon: string
+    subtitle: string
+    text: string
+    buttonText: string
+    buttonLink: string
   }
 
 const CardModalities = ({
   tone,
-  icon = 'images/iconintegral.svg',
-  title = 'Title CardModalities',
-  subtitle = 'Subtitle CardModalities',
-  text = 'Text CardModalities',
-  buttonText = 'Button',
-  buttonLink = '#'
+  icon,
+  title,
+  subtitle,
+  text,
+  buttonText,
+  buttonLink
 }: CardModalitiesProps) => (
   <S.Wrapper>
     <S.Icon tone={tone}>

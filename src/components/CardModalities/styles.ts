@@ -1,11 +1,14 @@
 import styled, { css } from 'styled-components'
 import { fontS1 } from 'styles/theme/mixins/_fontSize'
-import { CardProps } from '.'
+import { CardModalitiesProps } from '.'
 import media from 'styles/theme/mixins/_respondTo'
 import { boxShadowLG } from 'styles/theme/mixins/_shadows'
 
+export type WrapperProps = Pick<CardModalitiesProps, 'tone'>
+
 export const Wrapper = styled.div`
   ${({ theme }) => css`
+    max-width: 400px;
     min-height: 155px;
     padding: ${theme.spacings.s6} ${theme.spacings.s1};
 
@@ -26,7 +29,7 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const Icon = styled.div<CardProps>`
+export const Icon = styled.div<WrapperProps>`
   ${({ theme, tone }) => css`
     width: 40px;
     height: 40px;

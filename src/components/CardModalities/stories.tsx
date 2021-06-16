@@ -1,10 +1,11 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import Card, { CardProps } from '.'
+import CardModalities, { CardModalitiesProps } from '.'
 
 export default {
-  title: 'Card',
-  component: Card,
+  title: 'CardModalities',
+  component: CardModalities,
   args: {
+    tone: 'tertiary',
     icon: 'images/iconintegral.svg',
     title: 'Title',
     subtitle: 'Subtitle',
@@ -14,4 +15,6 @@ export default {
   }
 } as Meta
 
-export const Default: Story<CardProps> = (args) => <Card {...args} />
+export const Default: Story<CardModalitiesProps> = (args) => (
+  <CardModalities {...args} />
+)

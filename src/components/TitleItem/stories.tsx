@@ -5,7 +5,8 @@ export default {
   title: 'TitleItem',
   component: TitleItem,
   args: {
-    title: 'Title Item'
+    title: 'Title Item',
+    tone: 'secondary'
   }
 } as Meta
 
