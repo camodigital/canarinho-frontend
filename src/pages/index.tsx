@@ -1,31 +1,22 @@
-import { gql } from '@apollo/client'
-
 import { initializeApollo } from 'utils/apollo'
-
-import TemplateHome from 'templates/TemplateHome'
 import { GetStaticPropsContext } from 'next'
+import useTranslation from 'next-translate/useTranslation'
 
-const GET_HOME = gql`
-  query GET_HOME($locale: String) {
-    paginaHome(locale: $locale) {
-      Title {
-        Title
-        Subtitle
-      }
-    }
-  }
-`
+import TemplateHome, { HomeProps } from 'templates/TemplateHome'
+import { GET_HOME } from 'graphql/queries/home'
 
-type HomeProps = {
-  title: string
-}
+export default function Home(props: HomeProps) {
+  const { t } = useTranslation('common')
 
-export default function Home({ title }: HomeProps) {
   return (
     <>
-      <TemplateHome />
-
-      {title}
+      <TemplateHome
+        siteNameFirst={t('siteNameFirst')}
+        siteNameLast={t('siteNameLast')}
+        noticeAlertIcon={props.noticeAlertIcon}
+        noticeAlertTitle={props.noticeAlertTitle}
+        noticeAlertSlug={props.noticeAlertSlug}
+      />
     </>
   )
 }
@@ -42,10 +33,12 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 
   return {
     props: {
-      revalidate: 300,
       data: data,
       initialApolloState: apolloClient.cache.extract(),
-      title: data.paginaHome.Title.Title
+      //
+      noticeAlertIcon: `http://localhost:1337${data.paginaHome.Aviso_Home.Icon.url}`,
+      noticeAlertTitle: data.paginaHome.Aviso_Home.Title,
+      noticeAlertSlug: data.paginaHome.Aviso_Home.aviso.slug
     }
   }
 }

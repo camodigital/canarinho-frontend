@@ -18,6 +18,8 @@ export const School = styled.span`
 
   transform: translate(-170%);
 
+  /* animation: titleSiteSchool 1s ease-in-out alternate infinite; */
+
   ${media.tablet} {
     width: 100px;
     height: 50px;
@@ -32,6 +34,16 @@ export const School = styled.span`
     height: 50px;
 
     transform: translate(-270%);
+  }
+
+  @keyframes titleSiteSchool {
+    0% {
+      transform: translateY(-5px);
+    }
+
+    100% {
+      transform: translateY(5px);
+    }
   }
 `
 

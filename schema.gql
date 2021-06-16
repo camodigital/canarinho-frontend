@@ -1,0 +1,2021 @@
+"""Direct the client to resolve this field locally, either from the cache or local resolvers."""
+directive @client(
+  """
+  When true, the client will never use the cache for this value. See
+  https://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true
+  """
+  always: Boolean
+) on FIELD | FRAGMENT_DEFINITION | INLINE_FRAGMENT
+
+"""
+Export this locally resolved field as a variable to be used in the remainder of this query. See
+https://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables
+"""
+directive @export(
+  """The variable name to export this field as."""
+  as: String!
+) on FIELD
+
+"""
+Specify a custom store key for this result. See
+https://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive
+"""
+directive @connection(
+  """Specify the store key."""
+  key: String!
+  """An array of query argument names to include in the generated custom store key."""
+  filter: [String!]
+) on FIELD
+
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type ColecaoAvisos {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String
+  slug: String
+  Text: String
+  Image: UploadFile
+  Images_Gallery: [ComponentGalleriesGalleryImages]
+  Videos_Gallery: [ComponentGalleriesGalleryVideo]
+  Documents: [ComponentDocumentsDocuments]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoAvisos!]!
+}
+
+type ColecaoAvisosConnection {
+  values: [ColecaoAvisos]
+  groupBy: ColecaoAvisosGroupBy
+  aggregate: ColecaoAvisosAggregator
+}
+
+type ColecaoAvisosAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ColecaoAvisosGroupBy {
+  id: [ColecaoAvisosConnectionId]
+  created_at: [ColecaoAvisosConnectionCreated_at]
+  updated_at: [ColecaoAvisosConnectionUpdated_at]
+  Title: [ColecaoAvisosConnectionTitle]
+  slug: [ColecaoAvisosConnectionSlug]
+  Text: [ColecaoAvisosConnectionText]
+  Image: [ColecaoAvisosConnectionImage]
+  locale: [ColecaoAvisosConnectionLocale]
+}
+
+type ColecaoAvisosConnectionId {
+  key: ID
+  connection: ColecaoAvisosConnection
+}
+
+type ColecaoAvisosConnectionCreated_at {
+  key: DateTime
+  connection: ColecaoAvisosConnection
+}
+
+type ColecaoAvisosConnectionUpdated_at {
+  key: DateTime
+  connection: ColecaoAvisosConnection
+}
+
+type ColecaoAvisosConnectionTitle {
+  key: String
+  connection: ColecaoAvisosConnection
+}
+
+type ColecaoAvisosConnectionSlug {
+  key: String
+  connection: ColecaoAvisosConnection
+}
+
+type ColecaoAvisosConnectionText {
+  key: String
+  connection: ColecaoAvisosConnection
+}
+
+type ColecaoAvisosConnectionImage {
+  key: ID
+  connection: ColecaoAvisosConnection
+}
+
+type ColecaoAvisosConnectionLocale {
+  key: String
+  connection: ColecaoAvisosConnection
+}
+
+input ColecaoAvisoInput {
+  Title: String
+  slug: String
+  Text: String
+  Image: ID
+  Images_Gallery: [ComponentGalleriesGalleryImageInput]
+  Videos_Gallery: [ComponentGalleriesGalleryVideoInput]
+  Documents: [ComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editColecaoAvisoInput {
+  Title: String
+  slug: String
+  Text: String
+  Image: ID
+  Images_Gallery: [editComponentGalleriesGalleryImageInput]
+  Videos_Gallery: [editComponentGalleriesGalleryVideoInput]
+  Documents: [editComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createColecaoAvisoInput {
+  data: ColecaoAvisoInput
+}
+
+type createColecaoAvisoPayload {
+  colecaoAviso: ColecaoAvisos
+}
+
+input updateColecaoAvisoInput {
+  where: InputID
+  data: editColecaoAvisoInput
+}
+
+type updateColecaoAvisoPayload {
+  colecaoAviso: ColecaoAvisos
+}
+
+input deleteColecaoAvisoInput {
+  where: InputID
+}
+
+type deleteColecaoAvisoPayload {
+  colecaoAviso: ColecaoAvisos
+}
+
+type ColecaoCalendario {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String
+  slug: String
+  Date: Date
+  Text: String
+  Documents: [ComponentDocumentsDocuments]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoCalendario!]!
+}
+
+type ColecaoCalendarioConnection {
+  values: [ColecaoCalendario]
+  groupBy: ColecaoCalendarioGroupBy
+  aggregate: ColecaoCalendarioAggregator
+}
+
+type ColecaoCalendarioAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ColecaoCalendarioGroupBy {
+  id: [ColecaoCalendarioConnectionId]
+  created_at: [ColecaoCalendarioConnectionCreated_at]
+  updated_at: [ColecaoCalendarioConnectionUpdated_at]
+  Title: [ColecaoCalendarioConnectionTitle]
+  slug: [ColecaoCalendarioConnectionSlug]
+  Date: [ColecaoCalendarioConnectionDate]
+  Text: [ColecaoCalendarioConnectionText]
+  locale: [ColecaoCalendarioConnectionLocale]
+}
+
+type ColecaoCalendarioConnectionId {
+  key: ID
+  connection: ColecaoCalendarioConnection
+}
+
+type ColecaoCalendarioConnectionCreated_at {
+  key: DateTime
+  connection: ColecaoCalendarioConnection
+}
+
+type ColecaoCalendarioConnectionUpdated_at {
+  key: DateTime
+  connection: ColecaoCalendarioConnection
+}
+
+type ColecaoCalendarioConnectionTitle {
+  key: String
+  connection: ColecaoCalendarioConnection
+}
+
+type ColecaoCalendarioConnectionSlug {
+  key: String
+  connection: ColecaoCalendarioConnection
+}
+
+type ColecaoCalendarioConnectionDate {
+  key: ID
+  connection: ColecaoCalendarioConnection
+}
+
+type ColecaoCalendarioConnectionText {
+  key: String
+  connection: ColecaoCalendarioConnection
+}
+
+type ColecaoCalendarioConnectionLocale {
+  key: String
+  connection: ColecaoCalendarioConnection
+}
+
+input ColecaoCalendarioInput {
+  Title: String
+  slug: String
+  Date: Date
+  Text: String
+  Documents: [ComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editColecaoCalendarioInput {
+  Title: String
+  slug: String
+  Date: Date
+  Text: String
+  Documents: [editComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createColecaoCalendarioInput {
+  data: ColecaoCalendarioInput
+}
+
+type createColecaoCalendarioPayload {
+  colecaoCalendario: ColecaoCalendario
+}
+
+input updateColecaoCalendarioInput {
+  where: InputID
+  data: editColecaoCalendarioInput
+}
+
+type updateColecaoCalendarioPayload {
+  colecaoCalendario: ColecaoCalendario
+}
+
+input deleteColecaoCalendarioInput {
+  where: InputID
+}
+
+type deleteColecaoCalendarioPayload {
+  colecaoCalendario: ColecaoCalendario
+}
+
+type ColecaoCardapio {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String
+  slug: String
+  Date: Date
+  Text: String
+  Documents: [ComponentDocumentsDocuments]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoCardapio!]!
+}
+
+type ColecaoCardapioConnection {
+  values: [ColecaoCardapio]
+  groupBy: ColecaoCardapioGroupBy
+  aggregate: ColecaoCardapioAggregator
+}
+
+type ColecaoCardapioAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ColecaoCardapioGroupBy {
+  id: [ColecaoCardapioConnectionId]
+  created_at: [ColecaoCardapioConnectionCreated_at]
+  updated_at: [ColecaoCardapioConnectionUpdated_at]
+  Title: [ColecaoCardapioConnectionTitle]
+  slug: [ColecaoCardapioConnectionSlug]
+  Date: [ColecaoCardapioConnectionDate]
+  Text: [ColecaoCardapioConnectionText]
+  locale: [ColecaoCardapioConnectionLocale]
+}
+
+type ColecaoCardapioConnectionId {
+  key: ID
+  connection: ColecaoCardapioConnection
+}
+
+type ColecaoCardapioConnectionCreated_at {
+  key: DateTime
+  connection: ColecaoCardapioConnection
+}
+
+type ColecaoCardapioConnectionUpdated_at {
+  key: DateTime
+  connection: ColecaoCardapioConnection
+}
+
+type ColecaoCardapioConnectionTitle {
+  key: String
+  connection: ColecaoCardapioConnection
+}
+
+type ColecaoCardapioConnectionSlug {
+  key: String
+  connection: ColecaoCardapioConnection
+}
+
+type ColecaoCardapioConnectionDate {
+  key: ID
+  connection: ColecaoCardapioConnection
+}
+
+type ColecaoCardapioConnectionText {
+  key: String
+  connection: ColecaoCardapioConnection
+}
+
+type ColecaoCardapioConnectionLocale {
+  key: String
+  connection: ColecaoCardapioConnection
+}
+
+input ColecaoCardapioInput {
+  Title: String
+  slug: String
+  Date: Date
+  Text: String
+  Documents: [ComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editColecaoCardapioInput {
+  Title: String
+  slug: String
+  Date: Date
+  Text: String
+  Documents: [editComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createColecaoCardapioInput {
+  data: ColecaoCardapioInput
+}
+
+type createColecaoCardapioPayload {
+  colecaoCardapio: ColecaoCardapio
+}
+
+input updateColecaoCardapioInput {
+  where: InputID
+  data: editColecaoCardapioInput
+}
+
+type updateColecaoCardapioPayload {
+  colecaoCardapio: ColecaoCardapio
+}
+
+input deleteColecaoCardapioInput {
+  where: InputID
+}
+
+type deleteColecaoCardapioPayload {
+  colecaoCardapio: ColecaoCardapio
+}
+
+type ColecaoDepoimentos {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+  Text: String
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoDepoimentos!]!
+}
+
+type ColecaoDepoimentosConnection {
+  values: [ColecaoDepoimentos]
+  groupBy: ColecaoDepoimentosGroupBy
+  aggregate: ColecaoDepoimentosAggregator
+}
+
+type ColecaoDepoimentosAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ColecaoDepoimentosGroupBy {
+  id: [ColecaoDepoimentosConnectionId]
+  created_at: [ColecaoDepoimentosConnectionCreated_at]
+  updated_at: [ColecaoDepoimentosConnectionUpdated_at]
+  Name: [ColecaoDepoimentosConnectionName]
+  Text: [ColecaoDepoimentosConnectionText]
+  locale: [ColecaoDepoimentosConnectionLocale]
+}
+
+type ColecaoDepoimentosConnectionId {
+  key: ID
+  connection: ColecaoDepoimentosConnection
+}
+
+type ColecaoDepoimentosConnectionCreated_at {
+  key: DateTime
+  connection: ColecaoDepoimentosConnection
+}
+
+type ColecaoDepoimentosConnectionUpdated_at {
+  key: DateTime
+  connection: ColecaoDepoimentosConnection
+}
+
+type ColecaoDepoimentosConnectionName {
+  key: String
+  connection: ColecaoDepoimentosConnection
+}
+
+type ColecaoDepoimentosConnectionText {
+  key: String
+  connection: ColecaoDepoimentosConnection
+}
+
+type ColecaoDepoimentosConnectionLocale {
+  key: String
+  connection: ColecaoDepoimentosConnection
+}
+
+input ColecaoDepoimentoInput {
+  Name: String
+  Text: String
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editColecaoDepoimentoInput {
+  Name: String
+  Text: String
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createColecaoDepoimentoInput {
+  data: ColecaoDepoimentoInput
+}
+
+type createColecaoDepoimentoPayload {
+  colecaoDepoimento: ColecaoDepoimentos
+}
+
+input updateColecaoDepoimentoInput {
+  where: InputID
+  data: editColecaoDepoimentoInput
+}
+
+type updateColecaoDepoimentoPayload {
+  colecaoDepoimento: ColecaoDepoimentos
+}
+
+input deleteColecaoDepoimentoInput {
+  where: InputID
+}
+
+type deleteColecaoDepoimentoPayload {
+  colecaoDepoimento: ColecaoDepoimentos
+}
+
+type ColecaoFuncionamento {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String
+  slug: String
+  Text: String
+  Image: UploadFile
+  Image_Galery: [ComponentGalleriesGalleryImages]
+  Video_Galery: [ComponentGalleriesGalleryVideo]
+  Documents: [ComponentDocumentsDocuments]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoFuncionamento!]!
+}
+
+type ColecaoFuncionamentoConnection {
+  values: [ColecaoFuncionamento]
+  groupBy: ColecaoFuncionamentoGroupBy
+  aggregate: ColecaoFuncionamentoAggregator
+}
+
+type ColecaoFuncionamentoAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ColecaoFuncionamentoGroupBy {
+  id: [ColecaoFuncionamentoConnectionId]
+  created_at: [ColecaoFuncionamentoConnectionCreated_at]
+  updated_at: [ColecaoFuncionamentoConnectionUpdated_at]
+  Title: [ColecaoFuncionamentoConnectionTitle]
+  slug: [ColecaoFuncionamentoConnectionSlug]
+  Text: [ColecaoFuncionamentoConnectionText]
+  Image: [ColecaoFuncionamentoConnectionImage]
+  locale: [ColecaoFuncionamentoConnectionLocale]
+}
+
+type ColecaoFuncionamentoConnectionId {
+  key: ID
+  connection: ColecaoFuncionamentoConnection
+}
+
+type ColecaoFuncionamentoConnectionCreated_at {
+  key: DateTime
+  connection: ColecaoFuncionamentoConnection
+}
+
+type ColecaoFuncionamentoConnectionUpdated_at {
+  key: DateTime
+  connection: ColecaoFuncionamentoConnection
+}
+
+type ColecaoFuncionamentoConnectionTitle {
+  key: String
+  connection: ColecaoFuncionamentoConnection
+}
+
+type ColecaoFuncionamentoConnectionSlug {
+  key: String
+  connection: ColecaoFuncionamentoConnection
+}
+
+type ColecaoFuncionamentoConnectionText {
+  key: String
+  connection: ColecaoFuncionamentoConnection
+}
+
+type ColecaoFuncionamentoConnectionImage {
+  key: ID
+  connection: ColecaoFuncionamentoConnection
+}
+
+type ColecaoFuncionamentoConnectionLocale {
+  key: String
+  connection: ColecaoFuncionamentoConnection
+}
+
+input ColecaoFuncionamentoInput {
+  Title: String
+  slug: String
+  Text: String
+  Image: ID
+  Image_Galery: [ComponentGalleriesGalleryImageInput]
+  Video_Galery: [ComponentGalleriesGalleryVideoInput]
+  Documents: [ComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editColecaoFuncionamentoInput {
+  Title: String
+  slug: String
+  Text: String
+  Image: ID
+  Image_Galery: [editComponentGalleriesGalleryImageInput]
+  Video_Galery: [editComponentGalleriesGalleryVideoInput]
+  Documents: [editComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createColecaoFuncionamentoInput {
+  data: ColecaoFuncionamentoInput
+}
+
+type createColecaoFuncionamentoPayload {
+  colecaoFuncionamento: ColecaoFuncionamento
+}
+
+input updateColecaoFuncionamentoInput {
+  where: InputID
+  data: editColecaoFuncionamentoInput
+}
+
+type updateColecaoFuncionamentoPayload {
+  colecaoFuncionamento: ColecaoFuncionamento
+}
+
+input deleteColecaoFuncionamentoInput {
+  where: InputID
+}
+
+type deleteColecaoFuncionamentoPayload {
+  colecaoFuncionamento: ColecaoFuncionamento
+}
+
+type ColecaoInstitucional {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String
+  slug: String
+  Text: String
+  Image: UploadFile
+  Image_Gallery: [ComponentGalleriesGalleryImages]
+  Video_Gallery: [ComponentGalleriesGalleryVideo]
+  Documents: [ComponentDocumentsDocuments]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoInstitucional!]!
+}
+
+type ColecaoInstitucionalConnection {
+  values: [ColecaoInstitucional]
+  groupBy: ColecaoInstitucionalGroupBy
+  aggregate: ColecaoInstitucionalAggregator
+}
+
+type ColecaoInstitucionalAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ColecaoInstitucionalGroupBy {
+  id: [ColecaoInstitucionalConnectionId]
+  created_at: [ColecaoInstitucionalConnectionCreated_at]
+  updated_at: [ColecaoInstitucionalConnectionUpdated_at]
+  Title: [ColecaoInstitucionalConnectionTitle]
+  slug: [ColecaoInstitucionalConnectionSlug]
+  Text: [ColecaoInstitucionalConnectionText]
+  Image: [ColecaoInstitucionalConnectionImage]
+  locale: [ColecaoInstitucionalConnectionLocale]
+}
+
+type ColecaoInstitucionalConnectionId {
+  key: ID
+  connection: ColecaoInstitucionalConnection
+}
+
+type ColecaoInstitucionalConnectionCreated_at {
+  key: DateTime
+  connection: ColecaoInstitucionalConnection
+}
+
+type ColecaoInstitucionalConnectionUpdated_at {
+  key: DateTime
+  connection: ColecaoInstitucionalConnection
+}
+
+type ColecaoInstitucionalConnectionTitle {
+  key: String
+  connection: ColecaoInstitucionalConnection
+}
+
+type ColecaoInstitucionalConnectionSlug {
+  key: String
+  connection: ColecaoInstitucionalConnection
+}
+
+type ColecaoInstitucionalConnectionText {
+  key: String
+  connection: ColecaoInstitucionalConnection
+}
+
+type ColecaoInstitucionalConnectionImage {
+  key: ID
+  connection: ColecaoInstitucionalConnection
+}
+
+type ColecaoInstitucionalConnectionLocale {
+  key: String
+  connection: ColecaoInstitucionalConnection
+}
+
+input ColecaoInstitucionalInput {
+  Title: String
+  slug: String
+  Text: String
+  Image: ID
+  Image_Gallery: [ComponentGalleriesGalleryImageInput]
+  Video_Gallery: [ComponentGalleriesGalleryVideoInput]
+  Documents: [ComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editColecaoInstitucionalInput {
+  Title: String
+  slug: String
+  Text: String
+  Image: ID
+  Image_Gallery: [editComponentGalleriesGalleryImageInput]
+  Video_Gallery: [editComponentGalleriesGalleryVideoInput]
+  Documents: [editComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createColecaoInstitucionalInput {
+  data: ColecaoInstitucionalInput
+}
+
+type createColecaoInstitucionalPayload {
+  colecaoInstitucional: ColecaoInstitucional
+}
+
+input updateColecaoInstitucionalInput {
+  where: InputID
+  data: editColecaoInstitucionalInput
+}
+
+type updateColecaoInstitucionalPayload {
+  colecaoInstitucional: ColecaoInstitucional
+}
+
+input deleteColecaoInstitucionalInput {
+  where: InputID
+}
+
+type deleteColecaoInstitucionalPayload {
+  colecaoInstitucional: ColecaoInstitucional
+}
+
+type ColecaoModalidades {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String
+  slug: String
+  Text: String
+  Icon: UploadFile
+  Image: UploadFile
+  Images_Gallery: [ComponentGalleriesGalleryImages]
+  Videos_Gallery: [ComponentGalleriesGalleryVideo]
+  Documents: [ComponentDocumentsDocuments]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ColecaoModalidades!]!
+}
+
+type ColecaoModalidadesConnection {
+  values: [ColecaoModalidades]
+  groupBy: ColecaoModalidadesGroupBy
+  aggregate: ColecaoModalidadesAggregator
+}
+
+type ColecaoModalidadesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ColecaoModalidadesGroupBy {
+  id: [ColecaoModalidadesConnectionId]
+  created_at: [ColecaoModalidadesConnectionCreated_at]
+  updated_at: [ColecaoModalidadesConnectionUpdated_at]
+  Title: [ColecaoModalidadesConnectionTitle]
+  slug: [ColecaoModalidadesConnectionSlug]
+  Text: [ColecaoModalidadesConnectionText]
+  Icon: [ColecaoModalidadesConnectionIcon]
+  Image: [ColecaoModalidadesConnectionImage]
+  locale: [ColecaoModalidadesConnectionLocale]
+}
+
+type ColecaoModalidadesConnectionId {
+  key: ID
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionCreated_at {
+  key: DateTime
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionUpdated_at {
+  key: DateTime
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionTitle {
+  key: String
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionSlug {
+  key: String
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionText {
+  key: String
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionIcon {
+  key: ID
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionImage {
+  key: ID
+  connection: ColecaoModalidadesConnection
+}
+
+type ColecaoModalidadesConnectionLocale {
+  key: String
+  connection: ColecaoModalidadesConnection
+}
+
+input ColecaoModalidadeInput {
+  Title: String
+  slug: String
+  Text: String
+  Icon: ID
+  Image: ID
+  Images_Gallery: [ComponentGalleriesGalleryImageInput]
+  Videos_Gallery: [ComponentGalleriesGalleryVideoInput]
+  Documents: [ComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editColecaoModalidadeInput {
+  Title: String
+  slug: String
+  Text: String
+  Icon: ID
+  Image: ID
+  Images_Gallery: [editComponentGalleriesGalleryImageInput]
+  Videos_Gallery: [editComponentGalleriesGalleryVideoInput]
+  Documents: [editComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createColecaoModalidadeInput {
+  data: ColecaoModalidadeInput
+}
+
+type createColecaoModalidadePayload {
+  colecaoModalidade: ColecaoModalidades
+}
+
+input updateColecaoModalidadeInput {
+  where: InputID
+  data: editColecaoModalidadeInput
+}
+
+type updateColecaoModalidadePayload {
+  colecaoModalidade: ColecaoModalidades
+}
+
+input deleteColecaoModalidadeInput {
+  where: InputID
+}
+
+type deleteColecaoModalidadePayload {
+  colecaoModalidade: ColecaoModalidades
+}
+
+type PaginaAvisosGerais {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: ComponentTitlePageTitulo
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaAvisosGerais!]!
+}
+
+input PaginaAvisosGeraiInput {
+  Title: ComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaAvisosGeraiInput {
+  Title: editComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaAvisosGeraiInput {
+  data: editPaginaAvisosGeraiInput
+}
+
+type updatePaginaAvisosGeraiPayload {
+  paginaAvisosGerai: PaginaAvisosGerais
+}
+
+type deletePaginaAvisosGeraiPayload {
+  paginaAvisosGerai: PaginaAvisosGerais
+}
+
+type PaginaCalendario {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: ComponentTitlePageTitulo
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaCalendario!]!
+}
+
+input PaginaCalendarioInput {
+  Title: ComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaCalendarioInput {
+  Title: editComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaCalendarioInput {
+  data: editPaginaCalendarioInput
+}
+
+type updatePaginaCalendarioPayload {
+  paginaCalendario: PaginaCalendario
+}
+
+type deletePaginaCalendarioPayload {
+  paginaCalendario: PaginaCalendario
+}
+
+type PaginaCardapio {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: ComponentTitlePageTitulo
+  Documents: [ComponentDocumentsDocuments]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaCardapio!]!
+}
+
+input PaginaCardapioInput {
+  Title: ComponentTitlePageTituloInput
+  Documents: [ComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaCardapioInput {
+  Title: editComponentTitlePageTituloInput
+  Documents: [editComponentDocumentsDocumentInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaCardapioInput {
+  data: editPaginaCardapioInput
+}
+
+type updatePaginaCardapioPayload {
+  paginaCardapio: PaginaCardapio
+}
+
+type deletePaginaCardapioPayload {
+  paginaCardapio: PaginaCardapio
+}
+
+type PaginaComoFunciona {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: ComponentTitlePageTitulo
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaComoFunciona!]!
+}
+
+input PaginaComoFuncionaInput {
+  Title: ComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaComoFuncionaInput {
+  Title: editComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaComoFuncionaInput {
+  data: editPaginaComoFuncionaInput
+}
+
+type updatePaginaComoFuncionaPayload {
+  paginaComoFunciona: PaginaComoFunciona
+}
+
+type deletePaginaComoFuncionaPayload {
+  paginaComoFunciona: PaginaComoFunciona
+}
+
+type PaginaContato {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Unidades: [ComponentAdressAdress]
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaContato!]!
+}
+
+input PaginaContatoInput {
+  Unidades: [ComponentAdressAdressInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaContatoInput {
+  Unidades: [editComponentAdressAdressInput]
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaContatoInput {
+  data: editPaginaContatoInput
+}
+
+type updatePaginaContatoPayload {
+  paginaContato: PaginaContato
+}
+
+type deletePaginaContatoPayload {
+  paginaContato: PaginaContato
+}
+
+type PaginaHome {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: ComponentTitlePageTitulo
+  Aviso_Home: ComponentNoticeNotice
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaHome!]!
+}
+
+input PaginaHomeInput {
+  Title: ComponentTitlePageTituloInput
+  Aviso_Home: ComponentNoticeNoticeInput
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaHomeInput {
+  Title: editComponentTitlePageTituloInput
+  Aviso_Home: editComponentNoticeNoticeInput
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaHomeInput {
+  data: editPaginaHomeInput
+}
+
+type updatePaginaHomePayload {
+  paginaHome: PaginaHome
+}
+
+type deletePaginaHomePayload {
+  paginaHome: PaginaHome
+}
+
+type PaginaInstitucional {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: ComponentTitlePageTitulo
+  Video: String
+  Tour: ComponentTourVirualTourVirtual
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaInstitucional!]!
+}
+
+input PaginaInstitucionalInput {
+  Title: ComponentTitlePageTituloInput
+  Video: String
+  Tour: ComponentTourVirualTourVirtualInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaInstitucionalInput {
+  Title: editComponentTitlePageTituloInput
+  Video: String
+  Tour: editComponentTourVirualTourVirtualInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaInstitucionalInput {
+  data: editPaginaInstitucionalInput
+}
+
+type updatePaginaInstitucionalPayload {
+  paginaInstitucional: PaginaInstitucional
+}
+
+type deletePaginaInstitucionalPayload {
+  paginaInstitucional: PaginaInstitucional
+}
+
+type PaginaModalidades {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: ComponentTitlePageTitulo
+  locale: String
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [PaginaModalidades!]!
+}
+
+input PaginaModalidadeInput {
+  Title: ComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editPaginaModalidadeInput {
+  Title: editComponentTitlePageTituloInput
+  localizations: [ID]
+  locale: String
+  created_by: ID
+  updated_by: ID
+}
+
+input updatePaginaModalidadeInput {
+  data: editPaginaModalidadeInput
+}
+
+type updatePaginaModalidadePayload {
+  paginaModalidade: PaginaModalidades
+}
+
+type deletePaginaModalidadePayload {
+  paginaModalidade: PaginaModalidades
+}
+
+type I18NLocale {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  code: String
+}
+
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph!]!
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission!]!
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser!]!
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+type ComponentAdressAdress {
+  id: ID!
+  Title: String
+  Text: String
+  Latitude: Float
+  Longitude: Float
+}
+
+input ComponentAdressAdressInput {
+  Title: String
+  Text: String
+  Latitude: Float
+  Longitude: Float
+}
+
+input editComponentAdressAdressInput {
+  id: ID
+  Title: String
+  Text: String
+  Latitude: Float
+  Longitude: Float
+}
+
+type ComponentDocumentsDocuments {
+  id: ID!
+  Name: String
+  Document: UploadFile
+}
+
+input ComponentDocumentsDocumentInput {
+  Name: String
+  Document: ID
+}
+
+input editComponentDocumentsDocumentInput {
+  id: ID
+  Name: String
+  Document: ID
+}
+
+type ComponentGalleriesGalleryImages {
+  id: ID!
+  Name: String
+  Images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile!]!
+}
+
+input ComponentGalleriesGalleryImageInput {
+  Name: String
+  Images: [ID]
+}
+
+input editComponentGalleriesGalleryImageInput {
+  id: ID
+  Name: String
+  Images: [ID]
+}
+
+type ComponentGalleriesGalleryVideo {
+  id: ID!
+  Name: String
+  Video: String
+}
+
+input ComponentGalleriesGalleryVideoInput {
+  Name: String
+  Video: String
+}
+
+input editComponentGalleriesGalleryVideoInput {
+  id: ID
+  Name: String
+  Video: String
+}
+
+type ComponentNoticeNotice {
+  id: ID!
+  Icon: UploadFile
+  aviso: ColecaoAvisos
+  Title: String
+}
+
+input ComponentNoticeNoticeInput {
+  Icon: ID
+  aviso: ID
+  Title: String
+}
+
+input editComponentNoticeNoticeInput {
+  id: ID
+  Icon: ID
+  aviso: ID
+  Title: String
+}
+
+type ComponentTitlePageTitulo {
+  id: ID!
+  Title: String
+  Subtitle: String
+  Text: String
+  Image: UploadFile
+}
+
+input ComponentTitlePageTituloInput {
+  Title: String
+  Subtitle: String
+  Text: String
+  Image: ID
+}
+
+input editComponentTitlePageTituloInput {
+  id: ID
+  Title: String
+  Subtitle: String
+  Text: String
+  Image: ID
+}
+
+type ComponentTourVirualTourVirtual {
+  id: ID!
+  Asa_Sul: String
+  Asa_Norte: String
+}
+
+input ComponentTourVirualTourVirtualInput {
+  Asa_Sul: String
+  Asa_Norte: String
+}
+
+input editComponentTourVirualTourVirtualInput {
+  id: ID
+  Asa_Sul: String
+  Asa_Norte: String
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ColecaoAvisos | ColecaoAvisosConnection | ColecaoAvisosAggregator | ColecaoAvisosGroupBy | ColecaoAvisosConnectionId | ColecaoAvisosConnectionCreated_at | ColecaoAvisosConnectionUpdated_at | ColecaoAvisosConnectionTitle | ColecaoAvisosConnectionSlug | ColecaoAvisosConnectionText | ColecaoAvisosConnectionImage | ColecaoAvisosConnectionLocale | createColecaoAvisoPayload | updateColecaoAvisoPayload | deleteColecaoAvisoPayload | ColecaoCalendario | ColecaoCalendarioConnection | ColecaoCalendarioAggregator | ColecaoCalendarioGroupBy | ColecaoCalendarioConnectionId | ColecaoCalendarioConnectionCreated_at | ColecaoCalendarioConnectionUpdated_at | ColecaoCalendarioConnectionTitle | ColecaoCalendarioConnectionSlug | ColecaoCalendarioConnectionDate | ColecaoCalendarioConnectionText | ColecaoCalendarioConnectionLocale | createColecaoCalendarioPayload | updateColecaoCalendarioPayload | deleteColecaoCalendarioPayload | ColecaoCardapio | ColecaoCardapioConnection | ColecaoCardapioAggregator | ColecaoCardapioGroupBy | ColecaoCardapioConnectionId | ColecaoCardapioConnectionCreated_at | ColecaoCardapioConnectionUpdated_at | ColecaoCardapioConnectionTitle | ColecaoCardapioConnectionSlug | ColecaoCardapioConnectionDate | ColecaoCardapioConnectionText | ColecaoCardapioConnectionLocale | createColecaoCardapioPayload | updateColecaoCardapioPayload | deleteColecaoCardapioPayload | ColecaoDepoimentos | ColecaoDepoimentosConnection | ColecaoDepoimentosAggregator | ColecaoDepoimentosGroupBy | ColecaoDepoimentosConnectionId | ColecaoDepoimentosConnectionCreated_at | ColecaoDepoimentosConnectionUpdated_at | ColecaoDepoimentosConnectionName | ColecaoDepoimentosConnectionText | ColecaoDepoimentosConnectionLocale | createColecaoDepoimentoPayload | updateColecaoDepoimentoPayload | deleteColecaoDepoimentoPayload | ColecaoFuncionamento | ColecaoFuncionamentoConnection | ColecaoFuncionamentoAggregator | ColecaoFuncionamentoGroupBy | ColecaoFuncionamentoConnectionId | ColecaoFuncionamentoConnectionCreated_at | ColecaoFuncionamentoConnectionUpdated_at | ColecaoFuncionamentoConnectionTitle | ColecaoFuncionamentoConnectionSlug | ColecaoFuncionamentoConnectionText | ColecaoFuncionamentoConnectionImage | ColecaoFuncionamentoConnectionLocale | createColecaoFuncionamentoPayload | updateColecaoFuncionamentoPayload | deleteColecaoFuncionamentoPayload | ColecaoInstitucional | ColecaoInstitucionalConnection | ColecaoInstitucionalAggregator | ColecaoInstitucionalGroupBy | ColecaoInstitucionalConnectionId | ColecaoInstitucionalConnectionCreated_at | ColecaoInstitucionalConnectionUpdated_at | ColecaoInstitucionalConnectionTitle | ColecaoInstitucionalConnectionSlug | ColecaoInstitucionalConnectionText | ColecaoInstitucionalConnectionImage | ColecaoInstitucionalConnectionLocale | createColecaoInstitucionalPayload | updateColecaoInstitucionalPayload | deleteColecaoInstitucionalPayload | ColecaoModalidades | ColecaoModalidadesConnection | ColecaoModalidadesAggregator | ColecaoModalidadesGroupBy | ColecaoModalidadesConnectionId | ColecaoModalidadesConnectionCreated_at | ColecaoModalidadesConnectionUpdated_at | ColecaoModalidadesConnectionTitle | ColecaoModalidadesConnectionSlug | ColecaoModalidadesConnectionText | ColecaoModalidadesConnectionIcon | ColecaoModalidadesConnectionImage | ColecaoModalidadesConnectionLocale | createColecaoModalidadePayload | updateColecaoModalidadePayload | deleteColecaoModalidadePayload | PaginaAvisosGerais | updatePaginaAvisosGeraiPayload | deletePaginaAvisosGeraiPayload | PaginaCalendario | updatePaginaCalendarioPayload | deletePaginaCalendarioPayload | PaginaCardapio | updatePaginaCardapioPayload | deletePaginaCardapioPayload | PaginaComoFunciona | updatePaginaComoFuncionaPayload | deletePaginaComoFuncionaPayload | PaginaContato | updatePaginaContatoPayload | deletePaginaContatoPayload | PaginaHome | updatePaginaHomePayload | deletePaginaHomePayload | PaginaInstitucional | updatePaginaInstitucionalPayload | deletePaginaInstitucionalPayload | PaginaModalidades | updatePaginaModalidadePayload | deletePaginaModalidadePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentAdressAdress | ComponentDocumentsDocuments | ComponentGalleriesGalleryImages | ComponentGalleriesGalleryVideo | ComponentNoticeNotice | ComponentTitlePageTitulo | ComponentTourVirualTourVirtual
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  colecaoAviso(id: ID!, publicationState: PublicationState): ColecaoAvisos
+  colecaoAvisos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [ColecaoAvisos!]!
+  colecaoAvisosConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ColecaoAvisosConnection
+  colecaoCalendario(id: ID!, publicationState: PublicationState): ColecaoCalendario
+  colecaoCalendarios(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [ColecaoCalendario!]!
+  colecaoCalendariosConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ColecaoCalendarioConnection
+  colecaoCardapio(id: ID!, publicationState: PublicationState): ColecaoCardapio
+  colecaoCardapios(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [ColecaoCardapio!]!
+  colecaoCardapiosConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ColecaoCardapioConnection
+  colecaoDepoimento(id: ID!, publicationState: PublicationState): ColecaoDepoimentos
+  colecaoDepoimentos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [ColecaoDepoimentos!]!
+  colecaoDepoimentosConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ColecaoDepoimentosConnection
+  colecaoFuncionamento(id: ID!, publicationState: PublicationState): ColecaoFuncionamento
+  colecaoFuncionamentos(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [ColecaoFuncionamento!]!
+  colecaoFuncionamentosConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ColecaoFuncionamentoConnection
+  colecaoInstitucional(id: ID!, publicationState: PublicationState): ColecaoInstitucional
+  colecaoInstitucionals(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [ColecaoInstitucional!]!
+  colecaoInstitucionalsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ColecaoInstitucionalConnection
+  colecaoModalidade(id: ID!, publicationState: PublicationState): ColecaoModalidades
+  colecaoModalidades(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [ColecaoModalidades!]!
+  colecaoModalidadesConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ColecaoModalidadesConnection
+  paginaAvisosGerai(publicationState: PublicationState, locale: String): PaginaAvisosGerais
+  paginaCalendario(publicationState: PublicationState, locale: String): PaginaCalendario
+  paginaCardapio(publicationState: PublicationState, locale: String): PaginaCardapio
+  paginaComoFunciona(publicationState: PublicationState, locale: String): PaginaComoFunciona
+  paginaContato(publicationState: PublicationState, locale: String): PaginaContato
+  paginaHome(publicationState: PublicationState, locale: String): PaginaHome
+  paginaInstitucional(publicationState: PublicationState, locale: String): PaginaInstitucional
+  paginaModalidade(publicationState: PublicationState, locale: String): PaginaModalidades
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile!]!
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+  """Retrieve all the existing roles. You can't apply filters on this query."""
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole!]!
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser!]!
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createColecaoAviso(input: createColecaoAvisoInput): createColecaoAvisoPayload
+  updateColecaoAviso(input: updateColecaoAvisoInput): updateColecaoAvisoPayload
+  deleteColecaoAviso(input: deleteColecaoAvisoInput): deleteColecaoAvisoPayload
+  createColecaoCalendario(input: createColecaoCalendarioInput): createColecaoCalendarioPayload
+  updateColecaoCalendario(input: updateColecaoCalendarioInput): updateColecaoCalendarioPayload
+  deleteColecaoCalendario(input: deleteColecaoCalendarioInput): deleteColecaoCalendarioPayload
+  createColecaoCardapio(input: createColecaoCardapioInput): createColecaoCardapioPayload
+  updateColecaoCardapio(input: updateColecaoCardapioInput): updateColecaoCardapioPayload
+  deleteColecaoCardapio(input: deleteColecaoCardapioInput): deleteColecaoCardapioPayload
+  createColecaoDepoimento(input: createColecaoDepoimentoInput): createColecaoDepoimentoPayload
+  updateColecaoDepoimento(input: updateColecaoDepoimentoInput): updateColecaoDepoimentoPayload
+  deleteColecaoDepoimento(input: deleteColecaoDepoimentoInput): deleteColecaoDepoimentoPayload
+  createColecaoFuncionamento(input: createColecaoFuncionamentoInput): createColecaoFuncionamentoPayload
+  updateColecaoFuncionamento(input: updateColecaoFuncionamentoInput): updateColecaoFuncionamentoPayload
+  deleteColecaoFuncionamento(input: deleteColecaoFuncionamentoInput): deleteColecaoFuncionamentoPayload
+  createColecaoInstitucional(input: createColecaoInstitucionalInput): createColecaoInstitucionalPayload
+  updateColecaoInstitucional(input: updateColecaoInstitucionalInput): updateColecaoInstitucionalPayload
+  deleteColecaoInstitucional(input: deleteColecaoInstitucionalInput): deleteColecaoInstitucionalPayload
+  createColecaoModalidade(input: createColecaoModalidadeInput): createColecaoModalidadePayload
+  updateColecaoModalidade(input: updateColecaoModalidadeInput): updateColecaoModalidadePayload
+  deleteColecaoModalidade(input: deleteColecaoModalidadeInput): deleteColecaoModalidadePayload
+  updatePaginaAvisosGerai(input: updatePaginaAvisosGeraiInput, locale: String): updatePaginaAvisosGeraiPayload
+  deletePaginaAvisosGerai(locale: String): deletePaginaAvisosGeraiPayload
+  updatePaginaCalendario(input: updatePaginaCalendarioInput, locale: String): updatePaginaCalendarioPayload
+  deletePaginaCalendario(locale: String): deletePaginaCalendarioPayload
+  updatePaginaCardapio(input: updatePaginaCardapioInput, locale: String): updatePaginaCardapioPayload
+  deletePaginaCardapio(locale: String): deletePaginaCardapioPayload
+  updatePaginaComoFunciona(input: updatePaginaComoFuncionaInput, locale: String): updatePaginaComoFuncionaPayload
+  deletePaginaComoFunciona(locale: String): deletePaginaComoFuncionaPayload
+  updatePaginaContato(input: updatePaginaContatoInput, locale: String): updatePaginaContatoPayload
+  deletePaginaContato(locale: String): deletePaginaContatoPayload
+  updatePaginaHome(input: updatePaginaHomeInput, locale: String): updatePaginaHomePayload
+  deletePaginaHome(locale: String): deletePaginaHomePayload
+  updatePaginaInstitucional(input: updatePaginaInstitucionalInput, locale: String): updatePaginaInstitucionalPayload
+  deletePaginaInstitucional(locale: String): deletePaginaInstitucionalPayload
+  updatePaginaModalidade(input: updatePaginaModalidadeInput, locale: String): updatePaginaModalidadePayload
+  deletePaginaModalidade(locale: String): deletePaginaModalidadePayload
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  createColecaoAvisoLocalization(input: updateColecaoAvisoInput!): ColecaoAvisos!
+  createColecaoCalendarioLocalization(input: updateColecaoCalendarioInput!): ColecaoCalendario!
+  createColecaoCardapioLocalization(input: updateColecaoCardapioInput!): ColecaoCardapio!
+  createColecaoDepoimentoLocalization(input: updateColecaoDepoimentoInput!): ColecaoDepoimentos!
+  createColecaoFuncionamentoLocalization(input: updateColecaoFuncionamentoInput!): ColecaoFuncionamento!
+  createColecaoInstitucionalLocalization(input: updateColecaoInstitucionalInput!): ColecaoInstitucional!
+  createColecaoModalidadeLocalization(input: updateColecaoModalidadeInput!): ColecaoModalidades!
+  createPaginaAvisosGeraiLocalization(input: updatePaginaAvisosGeraiInput!): PaginaAvisosGerais!
+  createPaginaCalendarioLocalization(input: updatePaginaCalendarioInput!): PaginaCalendario!
+  createPaginaCardapioLocalization(input: updatePaginaCardapioInput!): PaginaCardapio!
+  createPaginaComoFuncionaLocalization(input: updatePaginaComoFuncionaInput!): PaginaComoFunciona!
+  createPaginaContatoLocalization(input: updatePaginaContatoInput!): PaginaContato!
+  createPaginaHomeLocalization(input: updatePaginaHomeInput!): PaginaHome!
+  createPaginaInstitucionalLocalization(input: updatePaginaInstitucionalInput!): PaginaInstitucional!
+  createPaginaModalidadeLocalization(input: updatePaginaModalidadeInput!): PaginaModalidades!
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+"""The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."""
+scalar JSON
+
+"""A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

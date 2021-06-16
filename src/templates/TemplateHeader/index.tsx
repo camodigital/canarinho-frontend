@@ -2,11 +2,10 @@ import useTranslation from 'next-translate/useTranslation'
 
 import MenuMaster from 'components/MenuMaster'
 import Head from 'next/head'
-import { MenuProps } from 'types/menu'
 
 import * as S from './styles'
 
-export type TemplateHeaderProps = MenuProps & {
+export type TemplateHeaderProps = {
   pageTitle: string
   pageDesc: string
 }

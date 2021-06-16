@@ -3,15 +3,18 @@ import { useState, useEffect } from 'react'
 import HeroBaby from 'components/HeroBaby'
 import HeroBoy from 'components/HeroBoy'
 import HeroGirl from 'components/HeroGirl'
-
-import * as S from './styles'
 import ContainerMaster from 'components/ContainerMaster'
-import TitleSite from 'components/TitleSite'
-import NoticeAlert from 'components/NoticeAlert'
+import TitleSite, { TitleSiteProps } from 'components/TitleSite'
+import NoticeAlert, { NoticeAlertProps } from 'components/NoticeAlert'
 import MediaMatch from 'components/MediaMatch'
 import SocialBird from 'components/SocialBird'
+import ParallaxContentX from 'components/ParallaxContentX'
 
-const Hero = () => {
+import * as S from './styles'
+
+export type HeroProps = TitleSiteProps & NoticeAlertProps
+
+const Hero = ({ firstWord, lastWord, icon, title, slug }: HeroProps) => {
   const [currentHero, setCurrentHero] = useState(1)
 
   useEffect(() => {
@@ -36,11 +39,13 @@ const Hero = () => {
       <S.Content>
         <ContainerMaster>
           <S.Title>
-            <TitleSite />
+            <ParallaxContentX speedLayer={1}>
+              <TitleSite firstWord={firstWord} lastWord={lastWord} />
+            </ParallaxContentX>
           </S.Title>
 
           <S.Notice>
-            <NoticeAlert />
+            <NoticeAlert icon={icon} title={title} slug={slug} />
           </S.Notice>
 
           <MediaMatch method="greaterThan" medias="desk">

@@ -1,11 +1,19 @@
-import Hero from 'components/Hero'
 import useTranslation from 'next-translate/useTranslation'
 
+import Hero from 'components/Hero'
 import TemplateHeader from 'templates/TemplateHeader'
 
 import * as S from './styles'
 
-const TemplateHome = () => {
+export type HomeProps = {
+  siteNameFirst: string
+  siteNameLast: string
+  noticeAlertIcon: string
+  noticeAlertTitle: string
+  noticeAlertSlug: string
+}
+
+const TemplateHome = (props: HomeProps) => {
   const { t } = useTranslation('home')
 
   return (
@@ -16,7 +24,13 @@ const TemplateHome = () => {
 
       <S.Content>
         <S.Section>
-          <Hero />
+          <Hero
+            firstWord={props.siteNameFirst}
+            lastWord={props.siteNameLast}
+            icon={props.noticeAlertIcon}
+            title={props.noticeAlertTitle}
+            slug={props.noticeAlertSlug}
+          />
         </S.Section>
 
         <S.Block>
