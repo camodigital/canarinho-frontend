@@ -3,17 +3,25 @@ import { toneProps } from 'types/tone'
 import * as S from './styles'
 
 export type TitleSectionProps = toneProps & {
-  text?: string
+  title: string
+  subtitle?: string
   dark: boolean
+  withSubtitle?: boolean
 }
 
 const TitleSection = ({
-  text = 'Title Section',
+  title = 'Title Section',
+  withSubtitle = false,
+  subtitle,
   tone,
   dark
 }: TitleSectionProps) => (
-  <S.Wrapper tone={tone} dark={dark}>
-    <ToneLastWord>{text}</ToneLastWord>
+  <S.Wrapper>
+    <S.Title tone={tone} dark={dark}>
+      <ToneLastWord>{title}</ToneLastWord>
+    </S.Title>
+
+    {withSubtitle && <S.Subtitle>{subtitle}</S.Subtitle>}
   </S.Wrapper>
 )
 

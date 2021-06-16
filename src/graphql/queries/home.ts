@@ -28,5 +28,18 @@ export const GET_HOME = gql`
       Subtitle
       Text
     }
+
+    paginaInstitucional(locale: $locale) {
+      Title {
+        Title
+        Subtitle
+        Text
+      }
+      Video
+      Tour {
+        Asa_Sul
+        Asa_Norte
+      }
+    }
   }
 `

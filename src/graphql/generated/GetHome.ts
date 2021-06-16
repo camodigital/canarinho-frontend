@@ -53,9 +53,30 @@ export interface GetHome_colecaoModalidades {
   Text: string | null;
 }
 
+export interface GetHome_paginaInstitucional_Title {
+  __typename: "ComponentTitlePageTitulo";
+  Title: string | null;
+  Subtitle: string | null;
+  Text: string | null;
+}
+
+export interface GetHome_paginaInstitucional_Tour {
+  __typename: "ComponentTourVirualTourVirtual";
+  Asa_Sul: string | null;
+  Asa_Norte: string | null;
+}
+
+export interface GetHome_paginaInstitucional {
+  __typename: "PaginaInstitucional";
+  Title: GetHome_paginaInstitucional_Title | null;
+  Video: string | null;
+  Tour: GetHome_paginaInstitucional_Tour | null;
+}
+
 export interface GetHome {
   paginaHome: GetHome_paginaHome | null;
   colecaoModalidades: GetHome_colecaoModalidades[];
+  paginaInstitucional: GetHome_paginaInstitucional | null;
 }
 
 export interface GetHomeVariables {

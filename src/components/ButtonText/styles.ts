@@ -4,11 +4,13 @@ import { fontS2, fontS4 } from 'styles/theme/mixins/_fontSize'
 import { toneBG, toneBGHover } from 'styles/theme/mixins/_tone'
 import { boxShadowLG } from 'styles/theme/mixins/_shadows'
 
+export type WrapperProps = Pick<ButtonTextProps, 'tone' | 'size'>
+
 export const Wrapper = styled.div`
   display: inline-block;
 `
 
-export const Button = styled.div<ButtonTextProps>`
+export const Button = styled.div<WrapperProps>`
   ${({ theme, size }) => css`
     display: inline-block;
 
@@ -61,7 +63,7 @@ export const Button = styled.div<ButtonTextProps>`
   `}
 `
 
-export const LineLeft = styled.div<ButtonTextProps>`
+export const LineLeft = styled.div<WrapperProps>`
   ${({ size }) => css`
     display: inline-block;
 
@@ -73,7 +75,7 @@ export const LineLeft = styled.div<ButtonTextProps>`
   `}
 `
 
-export const LineRight = styled.div<ButtonTextProps>`
+export const LineRight = styled.div<WrapperProps>`
   ${({ size }) => css`
     display: inline-block;
 

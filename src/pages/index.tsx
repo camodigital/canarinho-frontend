@@ -18,6 +18,10 @@ export default function Home(props: HomeProps) {
         noticeAlertTitle={props.noticeAlertTitle}
         noticeAlertSlug={props.noticeAlertSlug}
         cardsModalities={props.cardsModalities}
+        InstitutionalTitle={props.InstitutionalTitle}
+        InstitutionalSubtitle={props.InstitutionalSubtitle}
+        InstitutionalText={props.InstitutionalText}
+        InstitutionalLink={props.InstitutionalLink}
       />
     </>
   )
@@ -37,11 +41,9 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     props: {
       data: data,
       initialApolloState: apolloClient.cache.extract(),
-      // hero
       noticeAlertIcon: `http://localhost:1337${data.paginaHome.Aviso_Home.Icon.url}`,
       noticeAlertTitle: data.paginaHome.Aviso_Home.Title,
       noticeAlertSlug: data.paginaHome.Aviso_Home.aviso.slug,
-      // modalities
       cardsModalities: data.colecaoModalidades.map(
         (card: GetHome_colecaoModalidades) => ({
           tone: card.Color,
@@ -51,7 +53,15 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
           subtitle: card.Subtitle,
           text: card.Text
         })
-      )
+      ),
+      InstitutionalTitle: data.paginaInstitucional.Title.Title,
+      InstitutionalSubtitle: data.paginaInstitucional.Title.Subtitle,
+      InstitutionalText: data.paginaInstitucional.Title.Text,
+      InstitutionalLink: data.paginaInstitucional.Video,
+      InstitutionalTour: {
+        Asa_Sul: data.paginaInstitucional.Tour.Asa_Sul,
+        Asa_Norte: data.paginaInstitucional.Tour.Asa_Norte
+      }
     }
   }
 }

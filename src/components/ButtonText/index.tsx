@@ -8,7 +8,7 @@ import { toneProps } from 'types/tone'
 export type ButtonTextProps = toneProps & {
   manner?: 'internal' | 'external' | 'function'
   size?: 'normal' | 'big'
-  name?: string
+  name: string
   link?: string
   buttonTextFunction?: React.MouseEventHandler<HTMLButtonElement>
 }

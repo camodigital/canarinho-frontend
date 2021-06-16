@@ -2,20 +2,25 @@ import useTranslation from 'next-translate/useTranslation'
 
 import Hero from 'components/Hero'
 import TemplateHeader from 'templates/TemplateHeader'
-
-import * as S from './styles'
 import CardsModalities, {
   CardsModalitiesProps
 } from 'components/CardsModalities'
 import ContainerMaster from 'components/ContainerMaster'
+import ContentVideoText, {
+  ContentVideoTextProps
+} from 'components/ContentVideoText'
 
-export type HomeProps = CardsModalitiesProps & {
-  siteNameFirst: string
-  siteNameLast: string
-  noticeAlertIcon: string
-  noticeAlertTitle: string
-  noticeAlertSlug: string
-}
+import * as S from './styles'
+import TitleSection from 'components/TitleSection'
+
+export type HomeProps = CardsModalitiesProps &
+  ContentVideoTextProps & {
+    siteNameFirst: string
+    siteNameLast: string
+    noticeAlertIcon: string
+    noticeAlertTitle: string
+    noticeAlertSlug: string
+  }
 
 const TemplateHome = (props: HomeProps) => {
   const { t } = useTranslation('home')
@@ -27,7 +32,7 @@ const TemplateHome = (props: HomeProps) => {
       </S.Header>
 
       <S.Content>
-        <S.Section>
+        <S.SectionHero>
           <Hero
             firstWord={props.siteNameFirst}
             lastWord={props.siteNameLast}
@@ -35,7 +40,7 @@ const TemplateHome = (props: HomeProps) => {
             title={props.noticeAlertTitle}
             slug={props.noticeAlertSlug}
           />
-        </S.Section>
+        </S.SectionHero>
 
         <S.Block>
           <S.Section>
@@ -44,9 +49,33 @@ const TemplateHome = (props: HomeProps) => {
             </ContainerMaster>
           </S.Section>
 
-          <S.Section>institutional</S.Section>
+          <S.Section>
+            <ContainerMaster size="small">
+              <ContentVideoText
+                InstitutionalTitle={props.InstitutionalTitle}
+                InstitutionalSubtitle={props.InstitutionalSubtitle}
+                InstitutionalText={props.InstitutionalText}
+                InstitutionalLink={props.InstitutionalLink}
+              />
+            </ContainerMaster>
+          </S.Section>
 
-          <S.Section>tour</S.Section>
+          <S.Section>
+            <S.SectionTitle>
+              <TitleSection tone="tertiary" /> <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+            </S.SectionTitle>
+          </S.Section>
         </S.Block>
 
         <S.Section>testimonial</S.Section>
