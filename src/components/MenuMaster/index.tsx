@@ -1,11 +1,11 @@
 import MediaMatch from 'components/MediaMatch'
 import MenuDesk from 'components/MenuDesk'
 import MenuMob from 'components/MenuMob'
-import { MenuProps } from 'types/menu'
+import { MenuMasterProps } from 'types/menu'
 
 import * as S from './styles'
 
-const MenuMaster = (props: MenuProps) => (
+const MenuMaster = (props: MenuMasterProps) => (
   <S.Wrapper>
     <MediaMatch method="lessThan" medias="desk">
       <MenuMob {...props} />

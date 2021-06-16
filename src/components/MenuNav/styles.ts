@@ -47,6 +47,10 @@ export const Social = styled.div`
   ${({ theme }) => css`
     margin-bottom: ${theme.spacings.s6};
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     ${media.desktop} {
       margin-bottom: 0;
     }

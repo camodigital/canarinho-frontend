@@ -1,11 +1,20 @@
 import { ButtonTextProps } from 'components/ButtonText'
 import { MenuLinkProps } from 'components/MenuLink'
 
+export type MenuMasterProps = MenuLogoProps & MenuProps & MenuSuppProps
+
+export type MenuLogoProps = {
+  logoName: string
+  logoTone: 'primary' | 'secondary' | 'tertiary'
+}
+
 export type MenuProps = {
-  logoName?: string
-  menuTitle?: string
-  menuLinks?: MenuLinkProps[]
-  menuSuppTitle?: string
-  menuSuppLinks?: MenuLinkProps[]
-  menuButtons?: ButtonTextProps[]
+  menuTitle: string
+  menuLinks: MenuLinkProps[]
+  menuButtons: ButtonTextProps[]
+}
+
+export type MenuSuppProps = {
+  menuSuppTitle: string
+  menuSuppLinks: MenuLinkProps[]
 }

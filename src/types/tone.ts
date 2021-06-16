@@ -1,3 +1,3 @@
 export type toneProps = {
-  tone?: 'primary' | 'secondary' | 'tertiary'
+  tone: 'primary' | 'secondary' | 'tertiary'
 }

@@ -24,7 +24,7 @@
     },
     {
       "name": "Contato",
-      "link": "/"
+      "link": "#"
     }
   ],
   "menuButtons": [
@@ -62,7 +62,7 @@
       "link": "/calendario"
     },
     {
-      "name": "Reunião de Pais e Mestres",
+      "name": "Reunião de Pais",
       "link": "/"
     },
     {

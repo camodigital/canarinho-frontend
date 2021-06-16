@@ -23,12 +23,13 @@ const TemplateHeader = ({ pageTitle, pageDesc }: TemplateHeaderProps) => {
 
       <S.Menu>
         <MenuMaster
-          logoName={t('logo')!}
-          menuTitle={t('menuTitle')!}
-          menuLinks={t('menuLinks', {}, { returnObjects: true })!}
-          menuButtons={t('menuButtons', {}, { returnObjects: true })!}
-          menuSuppTitle={t('menuSuppTitle')!}
-          menuSuppLinks={t('menuSuppLinks', {}, { returnObjects: true })!}
+          logoName={t('logo')}
+          logoTone="secondary"
+          menuTitle={t('menuTitle')}
+          menuLinks={t('menuLinks', {}, { returnObjects: true })}
+          menuButtons={t('menuButtons', {}, { returnObjects: true })}
+          menuSuppTitle={t('menuSuppTitle')}
+          menuSuppLinks={t('menuSuppLinks', {}, { returnObjects: true })}
         />
       </S.Menu>
     </S.Wrapper>

@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react'
 
 import ContainerMaster from 'components/ContainerMaster'
-import LogoCanarinho from 'components/LogoCanarinho'
+import LogoMaster from 'components/LogoMaster'
 import MenuNav from 'components/MenuNav'
 import MenuSuppNav from 'components/MenuSuppNav'
-import { MenuProps } from 'types/menu'
-
-import * as S from './styles'
+import { MenuMasterProps } from 'types/menu'
 import IconArrowSide from 'components/Icons/IconArrowSide'
 import ToneLastWord from 'components/ToneLastWord'
 
+import * as S from './styles'
+
 const MenuDesk = ({
   logoName,
+  logoTone,
+  menuTitle,
   menuLinks,
   menuSuppTitle,
   menuSuppLinks,
   menuButtons
-}: MenuProps) => {
+}: MenuMasterProps) => {
   const [scrolling, setScrolling] = useState(true)
   const [menuSuppOpen, setMenuSuppOpen] = useState(true)
 
@@ -49,15 +51,20 @@ const MenuDesk = ({
         <ContainerMaster>
           <S.Logo>
             <S.LogoContent>
-              <LogoCanarinho
+              <LogoMaster
                 compact={!scrolling ? true : false}
-                name={logoName!}
+                name={logoName}
+                tone={logoTone}
               />
             </S.LogoContent>
           </S.Logo>
 
           <S.Nav>
-            <MenuNav menuLinks={menuLinks!} menuButtons={menuButtons!} />
+            <MenuNav
+              menuTitle={menuTitle}
+              menuLinks={menuLinks!}
+              menuButtons={menuButtons}
+            />
           </S.Nav>
         </ContainerMaster>
       </S.Menu>
@@ -75,12 +82,13 @@ const MenuDesk = ({
 
         <S.MenuSuppNav>
           <S.MenuSuppNavContent>
-            <MenuSuppNav menuSuppLinks={menuSuppLinks!} />
+            <MenuSuppNav
+              menuSuppTitle={menuSuppTitle}
+              menuSuppLinks={menuSuppLinks}
+            />
           </S.MenuSuppNavContent>
         </S.MenuSuppNav>
       </S.MenuSupp>
-
-      <div style={{ height: '200vh' }}></div>
     </S.Wrapper>
   )
 }

@@ -19,7 +19,7 @@ const MenuNav = ({ menuLinks, menuButtons }: MenuProps) => (
     </S.Links>
 
     <S.Social>
-      <SocialIcons />
+      <SocialIcons tone="secondary" />
     </S.Social>
 
     <MediaMatch method="greaterThan" medias="desk">

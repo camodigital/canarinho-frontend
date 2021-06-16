@@ -1,24 +1,25 @@
 import { useState, useEffect } from 'react'
 
 import ButtonLanguage from 'components/ButtonLanguage'
-import LogoCanarinho from 'components/LogoCanarinho'
-import { MenuProps } from 'types/menu'
+import { MenuMasterProps } from 'types/menu'
 import SliderBase, { SliderSettings } from 'components/SliderBase'
-
-import * as S from './styles'
 import MenuNav from 'components/MenuNav'
 import MenuSuppNav from 'components/MenuSuppNav'
 import IconOpenMenu from 'components/Icons/IconOpenMenu'
 import IconCloseMenu from 'components/Icons/IconCloseMenu'
+import LogoMaster from 'components/LogoMaster'
+
+import * as S from './styles'
 
 const MenuMob = ({
   logoName,
+  logoTone,
   menuTitle,
   menuLinks,
   menuSuppTitle,
   menuSuppLinks,
   menuButtons
-}: MenuProps) => {
+}: MenuMasterProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handlderIsOpen = () => {
@@ -42,7 +43,7 @@ const MenuMob = ({
   return (
     <S.Wrapper>
       <S.Logo>
-        <LogoCanarinho compact={true} name={logoName!} />
+        <LogoMaster compact={true} name={logoName} tone={logoTone} />
       </S.Logo>
 
       <S.Lang>
@@ -62,11 +63,18 @@ const MenuMob = ({
         <S.NavContent className={isOpen ? 'isOpen' : 'isClose'}>
           <SliderBase settings={settings}>
             <S.Slide>
-              <MenuNav menuLinks={menuLinks!} menuButtons={menuButtons!} />
+              <MenuNav
+                menuTitle={menuTitle}
+                menuLinks={menuLinks}
+                menuButtons={menuButtons}
+              />
             </S.Slide>
 
             <S.Slide>
-              <MenuSuppNav menuSuppLinks={menuSuppLinks!} />
+              <MenuSuppNav
+                menuSuppTitle={menuSuppTitle}
+                menuSuppLinks={menuSuppLinks}
+              />
             </S.Slide>
           </SliderBase>
         </S.NavContent>

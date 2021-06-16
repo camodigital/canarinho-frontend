@@ -2,13 +2,13 @@ import TextSmall from 'components/TextSmall'
 import TitleItem, { TitleItemProps } from 'components/TitleItem'
 import { toneProps } from 'types/tone'
 import TextLimited from 'components/TextLimited'
-
-import * as S from './styles'
 import ButtonIcon from 'components/ButtonIcon'
 import MediaMatch from 'components/MediaMatch'
 import ActiveLink from 'components/ActiveLink'
 
-export type CardProps = toneProps &
+import * as S from './styles'
+
+export type CardModalitiesProps = toneProps &
   TitleItemProps & {
     icon?: string
     subtitle?: string
@@ -17,15 +17,15 @@ export type CardProps = toneProps &
     buttonLink?: string
   }
 
-const Card = ({
+const CardModalities = ({
   tone,
   icon = 'images/iconintegral.svg',
-  title = 'Title Card',
-  subtitle = 'Subtitle card',
-  text = 'Text Card',
+  title = 'Title CardModalities',
+  subtitle = 'Subtitle CardModalities',
+  text = 'Text CardModalities',
   buttonText = 'Button',
   buttonLink = '#'
-}: CardProps) => (
+}: CardModalitiesProps) => (
   <S.Wrapper>
     <S.Icon tone={tone}>
       <ActiveLink href={buttonLink}>
@@ -73,4 +73,4 @@ const Card = ({
   </S.Wrapper>
 )
 
-export default Card
+export default CardModalities

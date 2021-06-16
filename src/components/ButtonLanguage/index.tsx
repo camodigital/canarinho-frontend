@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import setLanguage from 'next-translate/setLanguage'
+import { useRouter } from 'next/router'
 
 import IconFlagBrasil from 'components/Icons/IconFlagBrasil'
 import IconFlagEUA from 'components/Icons/IconFlagEUA'
@@ -7,17 +8,18 @@ import IconFlagEUA from 'components/Icons/IconFlagEUA'
 import * as S from './styles'
 
 const ButtonLanguage = () => {
-  const [lang, setLang] = useState('pt')
+  const [lang, setLang] = useState('pt-BR')
+
+  const router = useRouter()
+  const { locale } = router
 
   const changeLang = async () => {
     switch (lang) {
-      case 'pt':
-        setLang('en')
+      case 'pt-BR':
         await setLanguage('en')
         break
 
       case 'en':
-        setLang('pt')
         await setLanguage('pt-BR')
         break
 
@@ -25,6 +27,14 @@ const ButtonLanguage = () => {
         break
     }
   }
+
+  useEffect(() => {
+    if (locale === 'en') {
+      setLang('en')
+    } else {
+      setLang('pt-BR')
+    }
+  }, [locale])
 
   useEffect(() => {
     if (lang) {

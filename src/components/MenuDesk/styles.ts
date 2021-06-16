@@ -23,7 +23,20 @@ export const Menu = styled.div`
       padding: ${theme.spacings.s8} 0;
 
       .containerMaster {
-        grid-template-columns: 150px 1fr;
+        grid-template-columns: 200px 1fr;
+      }
+
+      ${Nav} {
+        .menuLink {
+          a {
+            color: ${theme.colors.white};
+
+            &.active,
+            &:hover {
+              color: ${theme.colors.secondary.s500};
+            }
+          }
+        }
       }
     }
 
@@ -40,13 +53,37 @@ export const Menu = styled.div`
       ${LogoContent} {
         position: static;
       }
+
+      ${Nav} {
+        .menuLink {
+          a {
+            color: ${theme.colors.gray.s500};
+
+            &.active,
+            &:hover {
+              color: ${theme.colors.primary.s500};
+            }
+          }
+        }
+      }
     }
   `}
 `
 
-export const Logo = styled.div``
+export const Logo = styled.div`
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 export const LogoContent = styled.div`
+  width: 100%;
+
   position: absolute;
   top: -20px;
   left: 0;
@@ -269,9 +306,9 @@ export const MenuSuppNav = styled.nav`
   position: relative;
 `
 
-export const MenuSuppNavContent = styled.nav`
+export const MenuSuppNavContent = styled.div`
   ${({ theme }) => css`
-    padding: 0 ${theme.spacings.s10} ${theme.spacings.s10} ${theme.spacings.s10};
+    padding: 0 ${theme.spacings.s6} ${theme.spacings.s10} ${theme.spacings.s6};
 
     border-radius: 0 0 ${theme.borders.radius.md} ${theme.borders.radius.md};
 

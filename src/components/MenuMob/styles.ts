@@ -4,7 +4,7 @@ import { boxShadowLG } from 'styles/theme/mixins/_shadows'
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     width: 100%;
-    padding: ${theme.spacings.s3} 0;
+    padding: ${theme.spacings.s3} ${theme.spacings.s3};
 
     display: grid;
     grid-template-columns: 1fr auto auto;
@@ -20,7 +20,14 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const Logo = styled.div``
+export const Logo = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`
 
 export const Lang = styled.div`
   ${({ theme }) => css`

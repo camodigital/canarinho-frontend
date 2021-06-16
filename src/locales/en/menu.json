@@ -24,7 +24,7 @@
     },
     {
       "name": "Contact",
-      "link": "/"
+      "link": "#"
     }
   ],
   "menuButtons": [
@@ -58,7 +58,7 @@
       "link": "/calendario"
     },
     {
-      "name": "Parent-Teacher Meeting",
+      "name": "Parents Meeting",
       "link": "/"
     },
     {

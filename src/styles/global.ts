@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     a {
       color: ${theme.colors.secondary.s500};
 
-      transition: 0.5s ease-in-out;
+      transition: 0.5s;
 
       &:hover {
         color: ${theme.colors.primary.s600};

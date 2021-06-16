@@ -1,9 +1,9 @@
 import MenuLink from 'components/MenuLink'
-import { MenuProps } from 'types/menu'
+import { MenuSuppProps } from 'types/menu'
 
 import * as S from './styles'
 
-const MenuSuppNav = ({ menuSuppLinks }: MenuProps) => (
+const MenuSuppNav = ({ menuSuppLinks }: MenuSuppProps) => (
   <S.Wrapper>
     <S.Content>
       <S.Links>

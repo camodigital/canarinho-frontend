@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import { MenuProps } from 'types/menu'
+import { MenuMasterProps } from 'types/menu'
 import MenuMob from '.'
 import mock from './mock'
 
@@ -22,4 +22,4 @@ export default {
   }
 } as Meta
 
-export const Default: Story<MenuProps> = (args) => <MenuMob {...args} />
+export const Default: Story<MenuMasterProps> = (args) => <MenuMob {...args} />
