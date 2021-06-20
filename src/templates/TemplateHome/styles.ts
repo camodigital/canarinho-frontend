@@ -8,48 +8,41 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const Header = styled.div`
+export const HeaderPage = styled.div`
   ${({ theme }) => css`
     position: relative;
     z-index: ${theme.layers.menu};
   `}
 `
 
-export const Content = styled.div``
+export const FooterPage = styled.div``
 
-export const Block = styled.div`
-  ${({ theme }) => css`
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
+export const ContentPage = styled.div``
 
-    position: relative;
+export const BlockBallTop = styled.div``
 
-    &::before {
-      content: '';
-      width: 100%;
-      height: 110%;
-      aspect-ratio: 1/1;
-
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-
-      border-radius: 300%;
-
-      background-color: ${theme.colors.white};
-    }
-  `}
-`
-
-export const SectionHero = styled.section``
+export const BlockBallBottom = styled.div``
 
 export const Section = styled.section`
-  ${({ theme }) => css`
-    padding: ${theme.spacings.s12};
+  position: relative;
+`
 
-    position: relative;
+export const Header = styled.div`
+  ${({ theme }) => css`
+    padding: ${theme.spacings.s6} 0;
   `}
 `
-export const SectionTitle = styled.section``
+
+export const Content = styled.div`
+  ${({ theme }) => css`
+    padding: ${theme.spacings.s6} 0;
+  `}
+`
+
+export const SectionHero = styled(Section)``
+
+export const SectionModalities = styled(Section)``
+
+export const SectionAbout = styled(Section)``
+
+export const SectionTour = styled(Section)``

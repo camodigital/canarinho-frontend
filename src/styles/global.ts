@@ -34,6 +34,10 @@ const GlobalStyles = createGlobalStyle`
       }
     }
 
+    strong {
+      font-weight: ${theme.fonts.weight.bold};
+    }
+
     img {
       display: block;
     }

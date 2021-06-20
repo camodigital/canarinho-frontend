@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import * as S from './styles'
 
@@ -9,6 +9,7 @@ export type TextLimitedProps = {
 
 const TextLimited = ({ text, limit }: TextLimitedProps) => {
   const [textLimited, setTextLimited] = useState<string | undefined>(undefined)
+  const content = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!!text && !!limit) {
@@ -21,7 +22,7 @@ const TextLimited = ({ text, limit }: TextLimitedProps) => {
   return (
     <S.Wrapper>
       {!!textLimited && (
-        <span dangerouslySetInnerHTML={{ __html: textLimited }} />
+        <div dangerouslySetInnerHTML={{ __html: textLimited }} ref={content} />
       )}
     </S.Wrapper>
   )

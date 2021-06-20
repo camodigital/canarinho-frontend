@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
     }
 
     ${media.desktop} {
-      padding: ${theme.spacings.s16} ${theme.spacings.s8};
+      padding: ${theme.spacings.s8} ${theme.spacings.s6};
 
       ${boxShadowLG(theme.colors.blackAlpha1)};
     }

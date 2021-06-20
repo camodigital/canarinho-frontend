@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: grid;
 
+    position: relative;
+
     ${media.desktop} {
       grid-template-columns: 1fr auto;
       grid-template-rows: auto;
@@ -14,16 +16,24 @@ export const Wrapper = styled.div`
 `
 
 export const Content = styled.div`
-  order: 2;
+  ${({ theme }) => css`
+    padding: ${theme.spacings.s12} 0;
 
-  ${media.desktop} {
-    order: 1;
-  }
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    ${media.desktop} {
+      order: 1;
+    }
+  `}
 `
 
 export const ContentHeader = styled.div`
   ${({ theme }) => css`
-    margin-bottom: ${theme.spacings.s6};
+    padding: ${theme.spacings.s6} 0;
   `}
 `
 
@@ -32,14 +42,17 @@ export const ContentText = styled.div`
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: ${theme.spacings.s6};
+    padding: ${theme.spacings.s6} 0;
   `}
 `
 
 export const ContentButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => css`
+    padding: ${theme.spacings.s6} 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `}
 `
 
 export const Video = styled.div`
@@ -53,6 +66,7 @@ export const Video = styled.div`
 
     ${media.desktop} {
       order: 2;
+      margin-bottom: 0;
     }
   `}
 `

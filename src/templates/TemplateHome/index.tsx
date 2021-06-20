@@ -9,17 +9,27 @@ import ContainerMaster from 'components/ContainerMaster'
 import ContentVideoText, {
   ContentVideoTextProps
 } from 'components/ContentVideoText'
+import TitleSection from 'components/TitleSection'
+import TourVirtual, { TourVirtualProps } from 'components/TourVirtual'
+import SliderTestimonial, {
+  SliderTestimonialProps
+} from 'components/SliderTestimonial'
+import TabRight from 'components/TabRight'
+import PhotosInsta from 'components/PhotosInsta'
 
 import * as S from './styles'
-import TitleSection from 'components/TitleSection'
+import TemplateFooter from 'templates/TemplateFooter'
 
-export type HomeProps = CardsModalitiesProps &
+export type HomeProps = TourVirtualProps &
+  SliderTestimonialProps &
+  CardsModalitiesProps &
   ContentVideoTextProps & {
     siteNameFirst: string
     siteNameLast: string
     noticeAlertIcon: string
     noticeAlertTitle: string
     noticeAlertSlug: string
+    OperationItems: { title: string; text: string; slug: string }[]
   }
 
 const TemplateHome = (props: HomeProps) => {
@@ -27,11 +37,11 @@ const TemplateHome = (props: HomeProps) => {
 
   return (
     <S.Wrapper>
-      <S.Header>
+      <S.HeaderPage>
         <TemplateHeader pageTitle={t('pageTitle')} pageDesc={t('pageDesc')} />
-      </S.Header>
+      </S.HeaderPage>
 
-      <S.Content>
+      <S.ContentPage>
         <S.SectionHero>
           <Hero
             firstWord={props.siteNameFirst}
@@ -42,14 +52,14 @@ const TemplateHome = (props: HomeProps) => {
           />
         </S.SectionHero>
 
-        <S.Block>
-          <S.Section>
-            <ContainerMaster>
+        <S.BlockBallTop>
+          <S.SectionModalities>
+            <ContainerMaster size="small">
               <CardsModalities cardsModalities={props.cardsModalities} />
             </ContainerMaster>
-          </S.Section>
+          </S.SectionModalities>
 
-          <S.Section>
+          <S.SectionAbout>
             <ContainerMaster size="small">
               <ContentVideoText
                 InstitutionalTitle={props.InstitutionalTitle}
@@ -58,34 +68,76 @@ const TemplateHome = (props: HomeProps) => {
                 InstitutionalLink={props.InstitutionalLink}
               />
             </ContainerMaster>
+          </S.SectionAbout>
+
+          <S.SectionTour>
+            <ContainerMaster size="small">
+              <S.Header>
+                <TitleSection
+                  tone="tertiary"
+                  withSubtitle={true}
+                  dark={false}
+                  title={t('tour.title')}
+                  subtitle={t('tour.subtitle')!}
+                />
+              </S.Header>
+
+              <S.Content>
+                <TourVirtual
+                  southWingTour={props.southWingTour}
+                  northWingTour={props.northWingTour}
+                />
+              </S.Content>
+            </ContainerMaster>
+          </S.SectionTour>
+        </S.BlockBallTop>
+
+        <S.Section>
+          <S.Header>
+            <TitleSection
+              tone="secondary"
+              withSubtitle={true}
+              dark={true}
+              title={t('testimonial.title')}
+              subtitle={t('testimonial.subtitle')!}
+            />
+          </S.Header>
+
+          <S.Content>
+            <SliderTestimonial testimonials={props.testimonials} />
+          </S.Content>
+        </S.Section>
+
+        <S.BlockBallBottom>
+          <S.Section>
+            <ContainerMaster size="small">
+              <S.Header>
+                <TitleSection
+                  tone="tertiary"
+                  withSubtitle={true}
+                  dark={false}
+                  title={t('operation.title')}
+                  subtitle={t('operation.subtitle')!}
+                />
+              </S.Header>
+
+              <S.Content>
+                <TabRight items={props.OperationItems} />
+              </S.Content>
+            </ContainerMaster>
           </S.Section>
 
           <S.Section>
-            <S.SectionTitle>
-              <TitleSection tone="tertiary" /> <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-            </S.SectionTitle>
+            <ContainerMaster size="small">
+              <PhotosInsta />
+            </ContainerMaster>
           </S.Section>
-        </S.Block>
+        </S.BlockBallBottom>
+      </S.ContentPage>
 
-        <S.Section>testimonial</S.Section>
-
-        <S.Block>
-          <S.Section>operation</S.Section>
-
-          <S.Section>photos</S.Section>
-        </S.Block>
-      </S.Content>
+      <S.FooterPage>
+        <TemplateFooter />
+      </S.FooterPage>
     </S.Wrapper>
   )
 }

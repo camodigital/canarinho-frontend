@@ -73,10 +73,25 @@ export interface GetHome_paginaInstitucional {
   Tour: GetHome_paginaInstitucional_Tour | null;
 }
 
+export interface GetHome_colecaoDepoimentos {
+  __typename: "ColecaoDepoimentos";
+  Text: string | null;
+  Name: string | null;
+}
+
+export interface GetHome_colecaoFuncionamentos {
+  __typename: "ColecaoFuncionamento";
+  slug: string | null;
+  Title: string | null;
+  Text: string | null;
+}
+
 export interface GetHome {
   paginaHome: GetHome_paginaHome | null;
   colecaoModalidades: GetHome_colecaoModalidades[];
   paginaInstitucional: GetHome_paginaInstitucional | null;
+  colecaoDepoimentos: GetHome_colecaoDepoimentos[];
+  colecaoFuncionamentos: GetHome_colecaoFuncionamentos[];
 }
 
 export interface GetHomeVariables {

@@ -1,12 +1,13 @@
 import ButtonIcon from 'components/ButtonIcon'
 import IconArrowSide from 'components/Icons/IconArrowSide'
 import MediaMatch from 'components/MediaMatch'
+import TextLimited from 'components/TextLimited'
 import React, { useState } from 'react'
 
 import * as S from './styles'
 
 export type TabRightProps = {
-  items: { title: string; text: string }[]
+  items: { title: string; text: string; slug: string }[]
 }
 
 const TabRight = ({ items }: TabRightProps) => {
@@ -33,7 +34,7 @@ const TabRight = ({ items }: TabRightProps) => {
                   tone="tertiary"
                   size="small"
                   manner="internal"
-                  link="#"
+                  link={`/funcionamento/${item.slug}`}
                   icon="arrowRight"
                 />
               </S.TabButton>
@@ -49,13 +50,13 @@ const TabRight = ({ items }: TabRightProps) => {
                 className={activeTab === index ? 'activeTab' : ''}
                 key={item.text + index}
               >
-                {item.text}
+                <TextLimited text={item.text} limit={400} />
                 <S.ContentButton>
                   <ButtonIcon
                     tone="tertiary"
                     size="small"
                     manner="internal"
-                    link="#"
+                    link={`/funcionamento/${item.slug}`}
                     icon="arrowRight"
                   />
                 </S.ContentButton>

@@ -3,6 +3,17 @@
   "siteNameLast": "Canarinho",
   "buttons": {
     "moreInfo": "Mais Informações",
-    "about": "Sobre Nós"
+    "about": "Sobre Nós",
+    "southWing": "Asa Sul",
+    "northWing": "Asa Norte",
+    "instagram": "Our Instagram"
+  },
+  "contactForm": {
+    "title": "diga olá",
+    "subtitle": "Nos deixe saber em que podemos ajudar"
+  },
+  "contactMap": {
+    "title": "como chegar",
+    "subtitle": "Nas nossas unidades Asa Sul e Asa Norte"
   }
 }

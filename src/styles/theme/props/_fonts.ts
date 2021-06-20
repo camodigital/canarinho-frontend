@@ -32,7 +32,7 @@ const fonts = {
     s3: {
       phone: '0.875rem',
       tablet: '0.875rem',
-      desktop: '0.875rem', //14px
+      desktop: '1rem',
       wide: '1rem', //16px
       superwide: '1rem',
       ultrawide: '1rem'

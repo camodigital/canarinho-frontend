@@ -23,8 +23,10 @@ export const Title = styled.h2<TitleProps>`
   `}
 `
 
-export const Subtitle = styled.span`
-  ${({ theme }) => css`
+export const Subtitle = styled.span<TitleProps>`
+  ${({ theme, dark }) => css`
     font-weight: ${theme.fonts.weight.bold};
+    color: ${dark && theme.colors.white};
+    letter-spacing: ${theme.fonts.letterSpacings.wider};
   `}
 `

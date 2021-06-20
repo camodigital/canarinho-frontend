@@ -41,5 +41,16 @@ export const GET_HOME = gql`
         Asa_Norte
       }
     }
+
+    colecaoDepoimentos(locale: $locale) {
+      Text
+      Name
+    }
+
+    colecaoFuncionamentos(locale: $locale) {
+      slug
+      Title
+      Text
+    }
   }
 `

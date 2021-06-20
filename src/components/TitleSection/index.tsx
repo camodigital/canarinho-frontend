@@ -21,7 +21,11 @@ const TitleSection = ({
       <ToneLastWord>{title}</ToneLastWord>
     </S.Title>
 
-    {withSubtitle && <S.Subtitle>{subtitle}</S.Subtitle>}
+    {withSubtitle && (
+      <S.Subtitle tone={tone} dark={dark}>
+        {subtitle}
+      </S.Subtitle>
+    )}
   </S.Wrapper>
 )
 

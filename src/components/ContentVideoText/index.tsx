@@ -3,9 +3,9 @@ import useTranslation from 'next-translate/useTranslation'
 import ButtonText from 'components/ButtonText'
 import TextLimited from 'components/TextLimited'
 import TitleSection from 'components/TitleSection'
+import ButtonVideo from 'components/ButtonVideo'
 
 import * as S from './styles'
-import ButtonVideo from 'components/ButtonVideo'
 
 export type ContentVideoTextProps = {
   InstitutionalTitle: string
