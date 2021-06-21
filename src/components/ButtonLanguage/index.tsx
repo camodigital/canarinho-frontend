@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import setLanguage from 'next-translate/setLanguage'
 import { useRouter } from 'next/router'
 
@@ -13,18 +13,22 @@ const ButtonLanguage = () => {
   const router = useRouter()
   const { locale } = router
 
-  const changeLang = async () => {
-    switch (lang) {
-      case 'pt-BR':
-        await setLanguage('en')
-        break
+  const changeLang = () => {
+    return async (e: React.MouseEvent) => {
+      e.preventDefault()
 
-      case 'en':
-        await setLanguage('pt-BR')
-        break
+      switch (lang) {
+        case 'pt-BR':
+          await setLanguage('en')
+          break
 
-      default:
-        break
+        case 'en':
+          await setLanguage('pt-BR')
+          break
+
+        default:
+          break
+      }
     }
   }
 
@@ -50,7 +54,7 @@ const ButtonLanguage = () => {
           : 'trocar idioma para português'
       }
     >
-      <S.Button onClick={changeLang}>
+      <S.Button onClick={changeLang()}>
         {!!lang && lang === 'en' ? <IconFlagEUA /> : <IconFlagBrasil />}
       </S.Button>
     </S.Wrapper>
