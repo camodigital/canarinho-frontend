@@ -2,6 +2,7 @@ import ButtonIcon from 'components/ButtonIcon'
 import CardTestimonial, {
   CardTestimonialProps
 } from 'components/CardTestimonial'
+import SlickButtonFix from 'components/SlickButtonFix'
 import SliderBase, { SliderSettings } from 'components/SliderBase'
 
 import * as S from './styles'
@@ -15,8 +16,7 @@ const SliderTestimonial = ({ testimonials }: SliderTestimonialProps) => {
     className: 'center',
     centerMode: true,
     infinite: true,
-    slidesToShow: 1,
-    centerPadding: '30%',
+    slidesToShow: 3,
     speed: 500,
     responsive: [
       {
@@ -28,14 +28,24 @@ const SliderTestimonial = ({ testimonials }: SliderTestimonialProps) => {
       }
     ],
     prevArrow: (
-      <div className="arrowPrev">
-        <ButtonIcon tone="secondary" size="medium" icon="arrowRight" />
-      </div>
+      <SlickButtonFix>
+        <ButtonIcon
+          size="medium"
+          tone="secondary"
+          icon="arrowLeft"
+          manner="funtion"
+        />
+      </SlickButtonFix>
     ),
     nextArrow: (
-      <div className="arrowNext">
-        <ButtonIcon tone="secondary" size="medium" icon="arrowLeft" />
-      </div>
+      <SlickButtonFix>
+        <ButtonIcon
+          size="medium"
+          tone="secondary"
+          icon="arrowRight"
+          manner="funtion"
+        />
+      </SlickButtonFix>
     )
   }
 

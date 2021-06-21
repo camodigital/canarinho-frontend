@@ -1,12 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const withPlugins = require('next-compose-plugins')
 const nextTranslate = require('next-translate')
 
-const withTM = require('next-transpile-modules')([
-  'react-leaflet',
-  '@react-leaflet/core'
-])
-
-module.exports = {
-  ...nextTranslate(),
-  ...withTM
-}
+module.exports = withPlugins([[nextTranslate()]])

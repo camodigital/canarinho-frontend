@@ -15,13 +15,13 @@ export const Wrapper = styled.div`
     left: 50%;
     bottom: 0;
     bottom: -50px;
-    transform: translateX(-60%);
+    transform: translateX(60%);
   }
   .slick-prev {
     position: absolute;
     left: 50%;
     bottom: -50px;
-    transform: translateX(60%);
+    transform: translateX(-60%);
   }
 `
 

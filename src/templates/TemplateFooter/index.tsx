@@ -1,10 +1,7 @@
 import useTranslation from 'next-translate/useTranslation'
-import dynamic from 'next/dynamic'
 
 import ContainerMaster from 'components/ContainerMaster'
 import TitleSection from 'components/TitleSection'
-
-const MapNav = dynamic(() => import('components/MapNav'), { ssr: false })
 
 import * as S from './styles'
 
@@ -33,9 +30,7 @@ const TemplateFooter = () => {
           />
         </S.Header>
 
-        <S.Content>
-          <MapNav />
-        </S.Content>
+        <S.Content></S.Content>
       </S.Map>
 
       <S.Form>form</S.Form>
